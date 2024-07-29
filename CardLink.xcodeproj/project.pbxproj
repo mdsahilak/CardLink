@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA23493E2C57F7C7004DD7F9 /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23493D2C57F7C7004DD7F9 /* BusinessCard.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA23493D2C57F7C7004DD7F9 /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA23493C2C57F7B7004DD7F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BA23493D2C57F7C7004DD7F9 /* BusinessCard.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BAC79B2E2C25FFEC00DBD238 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 		BAC79B392C25FFEC00DBD238 /* CardLink */ = {
 			isa = PBXGroup;
 			children = (
+				BA23493C2C57F7B7004DD7F9 /* Models */,
 				BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */,
 				BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
@@ -149,6 +160,7 @@
 			files = (
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
+				BA23493E2C57F7C7004DD7F9 /* BusinessCard.swift in Sources */,
 				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
 			);

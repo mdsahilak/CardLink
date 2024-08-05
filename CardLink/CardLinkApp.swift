@@ -13,7 +13,7 @@ struct CardLinkApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BusinessCardView(card: .mock)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

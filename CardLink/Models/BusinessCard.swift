@@ -16,3 +16,13 @@ struct BusinessCard {
     
     var address: String
 }
+
+extension BusinessCard {
+    static let mock: Self = BusinessCard(
+        firstName: "James", 
+        lastName: "Appleseed",
+        email: "james@apple.com", 
+        phoneNumber: "+44 7585430111",
+        address: "#11, Antarctica 007007"
+    )
+}

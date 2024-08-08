@@ -25,7 +25,7 @@ struct BusinessCardView: View {
                         .overlay(Circle().stroke(Color.white, lineWidth: 5))
                     
                     Text("Md Sahil Ak")
-                        .font(.headline)
+                        .font(.appSubheadline)
                         .bold()
                         .foregroundColor(.white)
                 }

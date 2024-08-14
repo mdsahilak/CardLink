@@ -11,13 +11,18 @@ struct BusinessCardView: View {
     let card: BusinessCard
     
     var body: some View {
-        HStack {
-            IconView
-            Divider()
-            
-            InfoView
-            Spacer()
+        NavigationLink {
+            Text("John")
+        } label: {
+            HStack {
+                IconView
+                Divider()
+                
+                InfoView
+                Spacer()
+            }
         }
+
     }
     
     private var IconView: some View {
@@ -43,6 +48,7 @@ struct BusinessCardView: View {
             
             Text("Apple, Inc.")
                 .font(.appSubheadline)
+
         }
     }
 }

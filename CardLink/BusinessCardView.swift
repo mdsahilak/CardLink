@@ -12,7 +12,7 @@ struct BusinessCardView: View {
     
     var body: some View {
         NavigationLink {
-            Text("John")
+            CardEditorView()
         } label: {
             HStack {
                 IconView

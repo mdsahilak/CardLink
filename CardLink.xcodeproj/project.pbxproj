@@ -11,6 +11,7 @@
 		BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23493F2C616A2A004DD7F9 /* HomeView.swift */; };
 		BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */; };
 		BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */; };
+		BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349492C6D3088004DD7F9 /* CardEditorView.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardView.swift; sourceTree = "<group>"; };
 		BA2349432C6170B8004DD7F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+AvenirNext.swift"; sourceTree = "<group>"; };
+		BA2349492C6D3088004DD7F9 /* CardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorView.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */,
 				BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */,
 				BA23493F2C616A2A004DD7F9 /* HomeView.swift */,
+				BA2349492C6D3088004DD7F9 /* CardEditorView.swift */,
 				BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
 				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
@@ -179,6 +182,7 @@
 			files = (
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
+				BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */,
 				BA23493E2C57F7C7004DD7F9 /* BusinessCard.swift in Sources */,
 				BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */,
 				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,

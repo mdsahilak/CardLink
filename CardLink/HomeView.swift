@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var cards: [BusinessCard] = [.mock]
+    
     @State private var searchText = ""
     
     var body: some View {
@@ -17,16 +19,8 @@ struct HomeView: View {
                     searchBar
                 }
                 
-                Section {
-                    BusinessCardView(card: .mock)
-                }
-                
-                Section {
-                    BusinessCardView(card: .mock)
-                }
-                
-                Section {
-                    BusinessCardView(card: .mock)
+                ForEach(cards) { card in
+                    BusinessCardView(card: card)
                 }
             }
             .foregroundStyle(.primaryText)

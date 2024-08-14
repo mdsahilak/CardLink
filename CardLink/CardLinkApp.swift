@@ -16,7 +16,7 @@ struct CardLinkApp: App {
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemGray
         UINavigationBar.appearance().shadowImage = UIImage()
     }
-
+    
     var body: some Scene {
         WindowGroup {
             HomeView()

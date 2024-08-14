@@ -37,16 +37,16 @@ struct BusinessCardView: View {
     private var InfoView: some View {
         VStack(alignment: .leading, spacing: 7) {
             VStack(alignment: .leading, spacing: 3) {
-                Text("Chief Executive Officer")
+                Text(card.role)
                     .font(.appFootnote)
                 
-                Text("John Appleseed")
+                Text(card.fullName)
                     .font(.appTitle2)
             }
             
             Divider()
             
-            Text("Apple, Inc.")
+            Text(card.company)
                 .font(.appSubheadline)
 
         }

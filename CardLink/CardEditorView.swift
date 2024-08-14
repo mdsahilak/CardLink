@@ -12,7 +12,7 @@ struct CardEditorView: View {
     
     var body: some View {
         Form {
-            Section("Image") {
+            Section("Logo") {
                 HStack {
                     Spacer()
                     Image("memoji_light")

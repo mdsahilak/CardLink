@@ -12,20 +12,20 @@ struct CardEditorView: View {
     
     var body: some View {
         Form {
-            Section("Logo") {
-                HStack {
-                    Spacer()
-                    Image("memoji_light")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .clipShape(Circle())
-                        .font(.appTitle1)
-                    Spacer()
-                }
-            }
+//            Section("Logo") {
+//                HStack {
+//                    Spacer()
+//                    Image("memoji_light")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 100, height: 100, alignment: .center)
+//                        .clipShape(Circle())
+//                        .font(.appTitle1)
+//                    Spacer()
+//                }
+//            }
             
-            Section("Full Name") {
+            Section("Name") {
                 TextField("First Name", text: $card.firstName)
                 TextField("Last Name", text: $card.lastName)
             }
@@ -44,6 +44,7 @@ struct CardEditorView: View {
                 TextEditor(text: $card.address)
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Editor")
     }
 }

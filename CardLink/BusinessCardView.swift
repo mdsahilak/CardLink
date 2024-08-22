@@ -11,17 +11,18 @@ struct BusinessCardView: View {
     let card: BusinessCard
     
     var body: some View {
-        NavigationLink {
-            CardEditorView()
-        } label: {
+//        NavigationLink {
+//            CardEditorView()
+//        } label: {
             HStack {
                 IconView
                 Divider()
                 
                 InfoView
                 Spacer()
+                
             }
-        }
+//        }
 
     }
     
@@ -35,20 +36,26 @@ struct BusinessCardView: View {
     }
     
     private var InfoView: some View {
-        VStack(alignment: .leading, spacing: 7) {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(card.role)
-                    .font(.appFootnote)
+        HStack {
+            VStack(alignment: .leading, spacing: 7) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(card.role)
+                        .font(.appFootnote)
+                    
+                    Text(card.fullName)
+                        .font(.appTitle2)
+                }
                 
-                Text(card.fullName)
-                    .font(.appTitle2)
+                Divider()
+                
+                Text(card.company)
+                    .font(.appSubheadline)
+
             }
             
-            Divider()
-            
-            Text(card.company)
-                .font(.appSubheadline)
-
+            Image(systemName: "chevron.up")
+                .imageScale(.small)
+                .font(.appFootnote)
         }
     }
 }

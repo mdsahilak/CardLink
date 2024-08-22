@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var cards: [BusinessCard] = [.mock]
+    @State private var cards: [BusinessCard] = [.mock, .init(id: .init(), firstName: "Arthur", lastName: "Stonecold", role: "VP of Software", company: "HSBC Ltd.", email: "xxx.x.com", phoneNumber: "-+44 ----", address: "---"), .init(id: .init(), firstName: "Daniel", lastName: "James", role: "Chief Operating Officer", company: "Fidelity Corp.", email: "daniel@fid.com", phoneNumber: "+4 ----", address: "fdada")]
     
     @State private var searchText = ""
+    @State private var showEditor: BusinessCard? = nil
     
     var body: some View {
         NavigationStack {
@@ -20,16 +21,59 @@ struct HomeView: View {
                 }
                 
                 ForEach(cards) { card in
-                    BusinessCardView(card: card)
+                    Section {
+                        Button(action: {
+                            showEditor = card
+                        }, label: {
+                            BusinessCardView(card: card)
+                        })
+                    }
                 }
             }
             .foregroundStyle(.primaryText)
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $showEditor, content: { item in
+                NavigationStack {
+                    CardEditorView()
+                }
+            })
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Label("Settings", systemImage: "slider.horizontal.3")
+                    })
+                }
+                
                 ToolbarItem(placement: .principal) {
                     Text("CardLink")
                         .font(.appTitle3)
                         .foregroundColor(.primaryText)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button {
+                            
+                        } label: {
+                            Label("Nearby Exchange", systemImage: "shared.with.you")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Label("Scan Paper Card", systemImage: "camera.viewfinder")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Label("Manual Entry", systemImage: "plus")
+                        }
+                    } label: {
+                        Label("Add Card", systemImage: "plus")
+                    }
                 }
             }
         }

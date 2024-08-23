@@ -12,25 +12,10 @@ struct CardEditorView: View {
     
     var body: some View {
         Form {
-//            Section("Logo") {
-//                HStack {
-//                    Spacer()
-//                    Image("memoji_light")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 100, height: 100, alignment: .center)
-//                        .clipShape(Circle())
-//                        .font(.appTitle1)
-//                    Spacer()
-//                }
-//            }
-            
             Section("Name") {
                 TextField("First Name", text: $card.firstName)
                 TextField("Last Name", text: $card.lastName)
             }
-            
-            
             
             Section("Phone Number") {
                 TextField("Phone", text: $card.phoneNumber)

@@ -13,6 +13,8 @@ struct HomeView: View {
     @State private var searchText = ""
     @State private var showEditor: BusinessCard? = nil
     
+    @State private var showNearbyExchange: Bool = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -37,6 +39,11 @@ struct HomeView: View {
                     CardEditorView()
                 }
             })
+            .sheet(isPresented: $showNearbyExchange, content: {
+                NavigationStack {
+                    NearbyExchangeView()
+                }
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
@@ -55,7 +62,7 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button {
-                            
+                            showNearbyExchange = true
                         } label: {
                             Label("Nearby Exchange", systemImage: "shared.with.you")
                         }

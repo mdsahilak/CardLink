@@ -8,10 +8,37 @@
 import SwiftUI
 
 struct NearbyExchangeView: View {
+    @StateObject var model = NearbyExchangeViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(model.peers) { peer in
+                HStack {
+                    Image(systemName: "iphone.gen1")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+
+                    Text(peer.peerId.displayName)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.vertical, 5)
+            }
+            .onAppear {
+                model.startBrowsing()
+            }
+            .onDisappear {
+                model.finishBrowsing()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Toggle("Press to be discoverable", isOn: $model.isAdvertised)
+                        .toggleStyle(.switch)
+                }
+            }
+        }
     }
 }
+
 
 #Preview {
     NearbyExchangeView()

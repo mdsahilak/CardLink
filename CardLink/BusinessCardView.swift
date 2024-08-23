@@ -12,22 +12,21 @@ struct BusinessCardView: View {
     
     var body: some View {
         HStack {
-            Divider()
-            
-            VStack(alignment: .center, spacing: 7) {
+            VStack(alignment: .leading, spacing: 7) {
                 Text(card.fullName)
                     .font(.appTitle2)
-                
-                Divider()
-                
                 Text(card.role)
-                    .font(.appFootnote)
+                    .font(.appSubheadline)
                 
                 Text(card.company)
-                    .font(.appSubheadline)
+                    .font(.appFootnote)
             }
             
-            Divider()
+            Spacer()
+            
+            Image(systemName: "chevron.up")
+                .imageScale(.small)
+                .font(.appBody)
         }
         .padding(7)
     }

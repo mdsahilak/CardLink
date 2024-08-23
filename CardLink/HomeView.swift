@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var cards: [BusinessCard] = [.mock, .init(id: .init(), firstName: "Arthur", lastName: "Stonecold", role: "VP of Software", company: "HSBC Ltd.", email: "xxx.x.com", phoneNumber: "-+44 ----", address: "---"), .init(id: .init(), firstName: "Daniel", lastName: "James", role: "Chief Operating Officer", company: "Fidelity Corp.", email: "daniel@fid.com", phoneNumber: "+4 ----", address: "fdada")]
+    @State private var cards: [BusinessCard] = [.mock, .init(id: .init(), firstName: "Arthur", lastName: "Stonecold", role: "VP of Software", company: "HSBC LTD", email: "xxx.x.com", phoneNumber: "-+44 ----", address: "---"), .init(id: .init(), firstName: "Daniel", lastName: "James", role: "Chief Operating Officer", company: "Fidelity Corporation", email: "daniel@fid.com", phoneNumber: "+4 ----", address: "fdada")]
     
     @State private var searchText = ""
     @State private var showEditor: BusinessCard? = nil

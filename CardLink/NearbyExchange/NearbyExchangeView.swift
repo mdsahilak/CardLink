@@ -44,7 +44,6 @@ struct NearbyExchangeView: View {
                     title: Text("Would you like to exchange cards with \(request.peerId.displayName)"),
                     primaryButton: .default(Text("Yes"), action: {
                         request.onRequest(true)
-//                        model.show(peerId: request.peerId)
                     }),
                     secondaryButton: .cancel(Text("No"), action: {
                         request.onRequest(false)

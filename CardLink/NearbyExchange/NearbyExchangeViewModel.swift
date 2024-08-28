@@ -20,23 +20,17 @@ final class NearbyExchangeViewModel: NSObject, ObservableObject {
     
     @Published var permissionRequest: PermitionRequest?
     
-    @Published var selectedPeer: PeerDevice? {
-        didSet {
-            connect()
-        }
-    }
-    
-    @Published var joinedPeers: [PeerDevice] = []
+    @Published var connectedPeer: PeerDevice? = nil
     
     @Published var messages: [String] = []
-    let messagePublisher = PassthroughSubject<String, Never>()
-    var subscriptions = Set<AnyCancellable>()
+//    let messagePublisher = PassthroughSubject<String, Never>()
+//    var subscriptions = Set<AnyCancellable>()
     
     func send(string: String) {
-        if let data = string.data(using: .utf8), let peerID = joinedPeers.last?.peerId {
+        if let data = string.data(using: .utf8), let peerID = connectedPeer?.peerId{
             try? session.send(data, toPeers: [peerID], with: .reliable)
             
-            messagePublisher.send(string)
+//            messagePublisher.send(string)
         } else {
             print("Error sendind data")
         }
@@ -60,12 +54,12 @@ final class NearbyExchangeViewModel: NSObject, ObservableObject {
         advertiser.delegate = self
         session.delegate = self
         
-        messagePublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.messages.append($0)
-            }
-            .store(in: &subscriptions)
+//        messagePublisher
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] in
+//                self?.messages.append($0)
+//            }
+//            .store(in: &subscriptions)
     }
     
     func startBrowsing() {
@@ -78,23 +72,19 @@ final class NearbyExchangeViewModel: NSObject, ObservableObject {
         browser.stopBrowsingForPeers()
     }
     
-    func show(peerId: MCPeerID) {
-        guard let first = peers.first(where: { $0.peerId == peerId }) else {
-            return
-        }
-        
-        joinedPeers.append(first)
-    }
+//    func show(peerId: MCPeerID) {
+//        guard let first = peers.first(where: { $0.peerId == peerId }) else {
+//            return
+//        }
+//        
+//        joinedPeers.append(first)
+//    }
     
-    private func connect() {
-        guard let selectedPeer else {
-            return
-        }
-        
-        if session.connectedPeers.contains(selectedPeer.peerId) {
-            joinedPeers.append(selectedPeer)
+    func connectTo(_ peer: PeerDevice) {
+        if session.connectedPeers.contains(peer.peerId) {
+            connectedPeer = peer
         } else {
-            browser.invitePeer(selectedPeer.peerId, to: session, withContext: nil, timeout: 60)
+            browser.invitePeer(peer.peerId, to: session, withContext: nil, timeout: 60)
         }
     }
 }
@@ -156,10 +146,16 @@ extension NearbyExchangeViewModel: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        guard let last = joinedPeers.last, last.peerId == peerID, let message = String(data: data, encoding: .utf8) else {
-            return
+        if let message = String(data: data, encoding: .utf8) {
+            self.messages.append(message)
+        } else {
+            print("Unable to decode message")
         }
+        
+//        guard let last = joinedPeers.last, last.peerId == peerID, let message = String(data: data, encoding: .utf8) else {
+//            return
+//        }
 
-        messagePublisher.send(message)
+//        messagePublisher.send(message)
     }
 }

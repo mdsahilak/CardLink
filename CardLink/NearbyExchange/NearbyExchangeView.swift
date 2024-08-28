@@ -11,10 +11,10 @@ struct NearbyExchangeView: View {
     @StateObject var model = NearbyExchangeViewModel()
 
     var body: some View {
-        NavigationStack(path: $model.joinedPeers) {
+        NavigationStack {
             List(model.peers) { peer in
                 Button(action: {
-                    model.selectedPeer = peer
+                    model.connectTo(peer)
                 }, label: {
                     HStack {
                         Image(systemName: "iphone.gen1")
@@ -44,24 +44,26 @@ struct NearbyExchangeView: View {
                     title: Text("Would you like to exchange cards with \(request.peerId.displayName)"),
                     primaryButton: .default(Text("Yes"), action: {
                         request.onRequest(true)
-                        model.show(peerId: request.peerId)
-                        print("Success")
+//                        model.show(peerId: request.peerId)
                     }),
                     secondaryButton: .cancel(Text("No"), action: {
                         request.onRequest(false)
                     })
                 )
             })
-            .navigationDestination(for: NearbyExchangeViewModel.PeerDevice.self, destination: { peer in
+            .sheet(item: $model.connectedPeer, content: { peer in
+                Text(peer.peerId.displayName)
                 VStack {
-                    Text(peer.peerId.displayName.description)
-                    Divider()
-                    List {
-                        ForEach(model.messages, id: \.self) { message in
-                            Text(message)
-                        }
+                    ForEach(model.messages, id: \.self) { message in
+                        Text(message)
                     }
                 }
+                
+                
+                Button("Send Random Message") {
+                    model.send(string: UUID().uuidString)
+                }
+                
             })
             .toolbar {
                 ToolbarItem(placement: .principal) {

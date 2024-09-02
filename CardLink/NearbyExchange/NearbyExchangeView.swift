@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NearbyExchangeView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @StateObject var model = NearbyExchangeViewModel()
 
     var body: some View {
@@ -26,12 +28,6 @@ struct NearbyExchangeView: View {
                     }
                     .padding(.vertical, 5)
                 })
-                
-                Divider()
-                
-                ForEach(model.messages, id: \.self) { message in
-                    Text(message)
-                }
             }
             .onAppear {
                 model.startBrowsing()
@@ -51,16 +47,33 @@ struct NearbyExchangeView: View {
                 )
             })
             .sheet(item: $model.connectedPeer, content: { peer in
-                Text(peer.peerId.displayName)
-                VStack {
-                    ForEach(model.messages, id: \.self) { message in
-                        Text(message)
+                NavigationStack {
+                    VStack {
+                        Text("Messages")
+                        
+                        Divider()
+                        
+                        ScrollView {
+                            VStack {
+                                ForEach(model.messages, id: \.self) { message in
+                                    Text(message)
+                                }
+                            }
+                        }
+                        
+                        Divider()
+                        
+                        Button("Send Random Message") {
+                            model.send(string: UUID().uuidString)
+                        }
+                        .buttonStyle(.bordered)
+                        .padding()
                     }
-                }
-                
-                
-                Button("Send Random Message") {
-                    model.send(string: UUID().uuidString)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text(peer.peerId.displayName)
+                        }
+                    }
                 }
                 
             })
@@ -70,9 +83,12 @@ struct NearbyExchangeView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Send Hello") {
-                        model.send(string: "Hello \(UUID().uuidString)")
+                    Button {
+                        dismiss()
+                    } label: {
+                        Label("Dismiss", systemImage: "xmark")
                     }
+
                 }
             }
         }

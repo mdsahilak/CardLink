@@ -38,8 +38,9 @@ struct HomeView: View {
                 NavigationStack {
                     CardEditorView()
                 }
+                .presentationDetents([.fraction(0.5)])
             })
-            .sheet(isPresented: $showNearbyExchange, content: {
+            .fullScreenCover(isPresented: $showNearbyExchange, content: {
                 NavigationStack {
                     NearbyExchangeView()
                 }

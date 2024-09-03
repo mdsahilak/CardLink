@@ -10,6 +10,25 @@ import VisionKit
 import Vision
 
 struct DocumentCameraView: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var recognizedText: String
+    
+    func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
+        let viewController = VNDocumentCameraViewController()
+        
+        viewController.delegate = context.coordinator
+        
+        return viewController
+    }
+
+    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+    
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
         var parent: DocumentCameraView
 
@@ -19,6 +38,7 @@ struct DocumentCameraView: UIViewControllerRepresentable {
 
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             controller.dismiss(animated: true)
+            
             // Process the scanned images
             var scannedTexts: [String] = []
             let requestHandler = VNImageRequestHandler(cgImage: scan.imageOfPage(at: scan.pageCount - 1).cgImage!, options: [:])
@@ -33,11 +53,16 @@ struct DocumentCameraView: UIViewControllerRepresentable {
                 
                 self.parent.recognizedText = scannedTexts.joined(separator: "\n")
             }
-
+            
             request.recognitionLevel = .accurate
-            try? requestHandler.perform([request])
+            
+            do {
+                try requestHandler.perform([request])
+            } catch {
+                print("Request Handler is unable to perform request.")
+            }
         }
-
+        
         func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
             controller.dismiss(animated: true)
         }
@@ -47,21 +72,5 @@ struct DocumentCameraView: UIViewControllerRepresentable {
             print("Scanning failed with error: \(error)")
         }
     }
-
-    @Binding var recognizedText: String
-    @Environment(\.presentationMode) var presentationMode
     
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
-    }
-    
-    func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
-        let viewController = VNDocumentCameraViewController()
-        
-        viewController.delegate = context.coordinator
-        
-        return viewController
-    }
-
-    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {  }
 }

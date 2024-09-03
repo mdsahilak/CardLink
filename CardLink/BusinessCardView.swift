@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BusinessCardView: View {
-    let card: BusinessCard
+    let card: BusinessCardDraft
     
     var body: some View {
         HStack {

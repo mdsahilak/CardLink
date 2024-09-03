@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BusinessCard: Identifiable {
+struct BusinessCardDraft: Identifiable {
     var id: UUID
     
     var company: String
@@ -22,8 +22,8 @@ struct BusinessCard: Identifiable {
     var address: String
 }
 
-extension BusinessCard {
-    static let mock: Self = BusinessCard(
+extension BusinessCardDraft {
+    static let mock: Self = BusinessCardDraft(
         id: UUID(),
         company: "Doom, Inc",
         name: "John Carmack",

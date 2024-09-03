@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var cards: [BusinessCard] = [.mock]
+    @State private var cards: [BusinessCardDraft] = [.mock]
     
     @State private var searchText = ""
-    @State private var showEditor: BusinessCard? = nil
+    @State private var showEditor: BusinessCardDraft? = nil
     
     @State private var showNearbyExchange: Bool = false
     @State private var showOCRScreen: Bool = false

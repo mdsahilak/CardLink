@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardEditorView: View {
-    @State private var card: BusinessCard = .mock
+    @State private var card: BusinessCardDraft = .mock
     
     var body: some View {
         Form {

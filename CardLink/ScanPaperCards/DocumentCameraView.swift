@@ -19,10 +19,9 @@ struct DocumentCameraView: UIViewControllerRepresentable {
 
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             controller.dismiss(animated: true)
-
             // Process the scanned images
             var scannedTexts: [String] = []
-            let requestHandler = VNImageRequestHandler(cgImage: scan.imageOfPage(at: 0).cgImage!, options: [:])
+            let requestHandler = VNImageRequestHandler(cgImage: scan.imageOfPage(at: scan.pageCount - 1).cgImage!, options: [:])
             
             let request = VNRecognizeTextRequest { (request, error) in
                 guard let observations = request.results as? [VNRecognizedTextObservation] else { return }

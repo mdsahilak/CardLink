@@ -10,10 +10,16 @@ import SwiftUI
 @main
 struct CardLinkApp: App {
     let persistenceController = PersistenceController.shared
-
+    
+    init() {
+        // Appearance Overrides
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemGray
+        UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            BusinessCardView(card: .mock)
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

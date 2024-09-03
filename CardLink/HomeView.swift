@@ -8,55 +8,197 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var cards: [BusinessCard] = [.mock]
+    
+    @State private var searchText = ""
+    @State private var showEditor: BusinessCard? = nil
+    
+    @State private var showNearbyExchange: Bool = false
+    @State private var showOCRScreen: Bool = false
+    
+    @State private var recognizedText: String = ""
+    
+    @State private var contents = BusinessCardContents()
+    
     var body: some View {
-        ZStack {
-            Color(red: 0.09, green: 0.63, blue: 0.52, opacity: 1.00)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Image("memoji_dark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200, alignment: .center)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.white, lineWidth: 5))
-                Text("Md Sahil Ak")
-                    .font(.custom("Pacifico-Regular", size: 40))
-                    .bold()
-                    .foregroundColor(.white)
-                Text("iOS Developer")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+        NavigationStack {
+            Form {
+                Section {
+                    searchBar
+                }
                 
-                Divider()
-                
-                InfoView(infoText: "mdsahilak@gmail.com", iconName: "envelope.fill", iconColor: .green)
-                InfoView(infoText: "+91 8747084769", iconName: "phone.fill", iconColor: .green)
+                ForEach(cards) { card in
+                    Section {
+                        Button(action: {
+                            showEditor = card
+                        }, label: {
+                            BusinessCardView(card: card)
+                        })
+                    }
+                }
             }
-            
+            .foregroundStyle(.primaryText)
+            .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $showEditor, content: { item in
+                NavigationStack {
+                    CardEditorView()
+                }
+                .presentationDetents([.fraction(0.5)])
+            })
+            .sheet(isPresented: $showOCRScreen, onDismiss: {
+                print("Text: \(recognizedText)")
+                print("----")
+                parseTextContents(text: recognizedText)
+                print("Contents ", contents)
+            }, content: {
+                DocumentCameraView(recognizedText: $recognizedText)
+            })
+            .fullScreenCover(isPresented: $showNearbyExchange, content: {
+                NavigationStack {
+                    NearbyExchangeView()
+                }
+            })
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Label("Settings", systemImage: "slider.horizontal.3")
+                    })
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Text("CardLink")
+                        .font(.appTitle3)
+                        .foregroundColor(.primaryText)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button {
+                            showNearbyExchange = true
+                        } label: {
+                            Label("Nearby Exchange", systemImage: "shared.with.you")
+                        }
+                        
+                        Button {
+                            showOCRScreen = true
+                        } label: {
+                            Label("Scan Paper Card", systemImage: "camera.viewfinder")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Label("Manual Entry", systemImage: "plus")
+                        }
+                    } label: {
+                        Label("Add Card", systemImage: "plus")
+                    }
+                }
+            }
         }
         
     }
-}
-
-struct InfoView: View {
     
-    var infoText: String
-    var iconName: String
-    var iconColor: Color
-    
-    var body: some View {
-        RoundedRectangle(cornerRadius: 1000)
-            .fill(Color.white)
-            .frame(height: 50)
-            .overlay(HStack {
-                Image(systemName: iconName)
-                    .foregroundColor(iconColor)
-                Text(infoText)
-            })
-            .padding(EdgeInsets(top: 16, leading: 12, bottom: 0, trailing: 12))
+    private var searchBar: some View {
+        HStack {
+            TextField("Search", text: $searchText)
+                .textFieldStyle(.plain)
+            
+            if !searchText.isEmpty {
+                Image(systemName: "xmark.circle")
+                    .font(.appBody)
+                    .contentShape(Rectangle())
+                    .frame(width: 44, alignment: .trailing)
+                    .onTapGesture {
+                        withAnimation(.default) {
+                            searchText = ""
+                        }
+                    }
+            }
+        }
+        .font(.body)
+        .tint(.primaryText)
+        .accessibilityAddTraits(.isSearchField)
     }
     
+    func parseTextContents(text: String) {
+        do {
+            // Any line could contain the name on the business card.
+            var potentialNames = text.components(separatedBy: .newlines)
+            
+            // Create an NSDataDetector to parse the text, searching for various fields of interest.
+            let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
+            let matches = detector.matches(in: text, options: .init(), range: NSRange(location: 0, length: text.count))
+            
+            for match in matches {
+                let matchStartIdx = text.index(text.startIndex, offsetBy: match.range.location)
+                let matchEndIdx = text.index(text.startIndex, offsetBy: match.range.location + match.range.length)
+                let matchedString = String(text[matchStartIdx..<matchEndIdx])
+                print(potentialNames)
+                // This line has been matched so it doesn't contain the name on the business card.
+                while !potentialNames.isEmpty && (matchedString.contains(potentialNames[0]) || potentialNames[0].contains(matchedString)) {
+                    potentialNames.remove(at: 0)
+                }
+            
+                switch match.resultType {
+                case .address:
+                    contents.address = matchedString
+                case .phoneNumber:
+                    contents.numbers.append(matchedString)
+                case .link:
+                    if (match.url?.absoluteString.contains("mailto"))! {
+                        contents.email = matchedString
+                    } else {
+                        contents.website = matchedString
+                    }
+                default:
+                    print("\(matchedString) type:\(match.resultType)")
+                }
+            }
+            
+            
+            if !potentialNames.isEmpty {
+                // Take the top-most unmatched line to be the person/business name.
+                contents.name = potentialNames.first
+            }
+        } catch {
+            print(error)
+        }
+    }
+}
+
+struct BusinessCardContents {
+    typealias CardContentField = (name: String, value: String)
+    
+    var name: String?
+    var numbers = [String]()
+    var website: String?
+    var address: String?
+    var email: String?
+    
+    func availableContents() -> [CardContentField] {
+        var contents = [CardContentField]()
+ 
+        if let name = self.name {
+            contents.append(("Name", name))
+        }
+        numbers.forEach { (number) in
+            contents.append(("Number", number))
+        }
+        if let website = self.website {
+            contents.append(("Website", website))
+        }
+        if let address = self.address {
+            contents.append(("Address", address))
+        }
+        if let email = self.email {
+            contents.append(("Email", email))
+        }
+        
+        return contents
+    }
 }
 
 #Preview {

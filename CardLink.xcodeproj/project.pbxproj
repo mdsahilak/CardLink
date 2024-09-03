@@ -10,6 +10,12 @@
 		BA23493E2C57F7C7004DD7F9 /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23493D2C57F7C7004DD7F9 /* BusinessCard.swift */; };
 		BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23493F2C616A2A004DD7F9 /* HomeView.swift */; };
 		BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */; };
+		BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */; };
+		BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349492C6D3088004DD7F9 /* CardEditorView.swift */; };
+		BA23494D2C78F31D004DD7F9 /* NearbyExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23494C2C78F31D004DD7F9 /* NearbyExchangeView.swift */; };
+		BA23494F2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23494E2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift */; };
+		BA2349522C78F405004DD7F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349512C78F405004DD7F9 /* Constants.swift */; };
+		BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
@@ -23,6 +29,12 @@
 		BA23493F2C616A2A004DD7F9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardView.swift; sourceTree = "<group>"; };
 		BA2349432C6170B8004DD7F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+AvenirNext.swift"; sourceTree = "<group>"; };
+		BA2349492C6D3088004DD7F9 /* CardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorView.swift; sourceTree = "<group>"; };
+		BA23494C2C78F31D004DD7F9 /* NearbyExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyExchangeView.swift; sourceTree = "<group>"; };
+		BA23494E2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyExchangeViewModel.swift; sourceTree = "<group>"; };
+		BA2349512C78F405004DD7F9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +65,39 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BA2349442C650D59004DD7F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BA23494B2C78F2A5004DD7F9 /* NearbyExchange */ = {
+			isa = PBXGroup;
+			children = (
+				BA23494E2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift */,
+				BA23494C2C78F31D004DD7F9 /* NearbyExchangeView.swift */,
+			);
+			path = NearbyExchange;
+			sourceTree = "<group>";
+		};
+		BA2349502C78F3FC004DD7F9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BA2349512C78F405004DD7F9 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BA2349572C875CA7004DD7F9 /* ScanPaperCards */ = {
+			isa = PBXGroup;
+			children = (
+				BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */,
+			);
+			path = ScanPaperCards;
+			sourceTree = "<group>";
+		};
 		BAC79B2E2C25FFEC00DBD238 = {
 			isa = PBXGroup;
 			children = (
@@ -77,9 +122,14 @@
 				BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */,
 				BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */,
 				BA23493F2C616A2A004DD7F9 /* HomeView.swift */,
+				BA2349492C6D3088004DD7F9 /* CardEditorView.swift */,
+				BA2349572C875CA7004DD7F9 /* ScanPaperCards */,
+				BA23494B2C78F2A5004DD7F9 /* NearbyExchange */,
 				BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
 				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
+				BA2349502C78F3FC004DD7F9 /* Helpers */,
+				BA2349442C650D59004DD7F9 /* Extensions */,
 				BAC79B482C25FFED00DBD238 /* CardLink.entitlements */,
 				BAC79B492C25FFED00DBD238 /* Info.plist */,
 				BAC79B452C25FFED00DBD238 /* CardLink.xcdatamodeld */,
@@ -168,11 +218,17 @@
 			files = (
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
+				BA23494F2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift in Sources */,
+				BA23494D2C78F31D004DD7F9 /* NearbyExchangeView.swift in Sources */,
+				BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */,
 				BA23493E2C57F7C7004DD7F9 /* BusinessCard.swift in Sources */,
 				BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */,
 				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,
+				BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
+				BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */,
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,
+				BA2349522C78F405004DD7F9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +372,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,9 +380,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdsahilak.CardLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -347,6 +408,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,9 +416,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdsahilak.CardLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

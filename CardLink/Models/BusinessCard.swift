@@ -7,22 +7,30 @@
 
 import Foundation
 
-struct BusinessCard {
-    var firstName: String
-    var lastName: String
+struct BusinessCard: Identifiable {
+    var id: UUID
+    
+    var company: String
+    
+    var name: String
+    var role: String
     
     var email: String
-    var phoneNumber: String
+    var phoneNumbers: [String]
+    var website: String
     
     var address: String
 }
 
 extension BusinessCard {
     static let mock: Self = BusinessCard(
-        firstName: "James", 
-        lastName: "Appleseed",
-        email: "james@apple.com", 
-        phoneNumber: "+44 7585430111",
+        id: UUID(),
+        company: "Doom, Inc",
+        name: "John Carmack",
+        role: "Chief Engineer",
+        email: "john@doom.com",
+        phoneNumbers: ["+44 7585430111"],
+        website: "www.doom.com",
         address: "#11, Antarctica 007007"
     )
 }

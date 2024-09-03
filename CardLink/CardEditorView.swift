@@ -13,8 +13,7 @@ struct CardEditorView: View {
     var body: some View {
         Form {
             Section("Name") {
-                TextField("First Name", text: $card.firstName)
-                TextField("Last Name", text: $card.lastName)
+                TextField("First Name", text: $card.name)
             }
             
             Section("Phone Number") {

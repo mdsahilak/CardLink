@@ -10,16 +10,14 @@ import Foundation
 struct BusinessCard: Identifiable {
     var id: UUID
     
-    var firstName: String
-    var lastName: String
-    
-    var fullName: String { "\(firstName) \(lastName)" }
-    
-    var role: String
     var company: String
+    
+    var name: String
+    var role: String
     
     var email: String
     var phoneNumber: String
+    var website: String
     
     var address: String
 }
@@ -27,12 +25,12 @@ struct BusinessCard: Identifiable {
 extension BusinessCard {
     static let mock: Self = BusinessCard(
         id: UUID(),
-        firstName: "John",
-        lastName: "Carmack",
-        role: "Chief Engineer",
         company: "Doom, Inc",
+        name: "John Carmack",
+        role: "Chief Engineer",
         email: "john@doom.com",
-        phoneNumber: "+44 7585430111",
+        phoneNumber: "+44 7585430111", 
+        website: "www.doom.com",
         address: "#11, Antarctica 007007"
     )
 }

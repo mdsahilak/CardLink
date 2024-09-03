@@ -13,7 +13,7 @@ struct BusinessCardView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 7) {
-                Text(card.fullName)
+                Text(card.name)
                     .font(.appTitle2)
                 Text(card.role)
                     .font(.appSubheadline)

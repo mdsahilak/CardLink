@@ -17,7 +17,7 @@ struct CardEditorView: View {
             }
             
             Section("Phone Number") {
-                TextField("Phone", text: $card.phoneNumber)
+                TextField("Phone", text: $card.phoneNumbers[0])
             }
             
             Section("Email") {

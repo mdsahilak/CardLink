@@ -16,7 +16,7 @@ struct BusinessCard: Identifiable {
     var role: String
     
     var email: String
-    var phoneNumber: String
+    var phoneNumbers: [String]
     var website: String
     
     var address: String
@@ -29,7 +29,7 @@ extension BusinessCard {
         name: "John Carmack",
         role: "Chief Engineer",
         email: "john@doom.com",
-        phoneNumber: "+44 7585430111", 
+        phoneNumbers: ["+44 7585430111"],
         website: "www.doom.com",
         address: "#11, Antarctica 007007"
     )

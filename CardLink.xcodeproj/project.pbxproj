@@ -90,6 +90,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		BA2349572C875CA7004DD7F9 /* ScanPaperCards */ = {
+			isa = PBXGroup;
+			children = (
+				BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */,
+			);
+			path = ScanPaperCards;
+			sourceTree = "<group>";
+		};
 		BAC79B2E2C25FFEC00DBD238 = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +123,7 @@
 				BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */,
 				BA23493F2C616A2A004DD7F9 /* HomeView.swift */,
 				BA2349492C6D3088004DD7F9 /* CardEditorView.swift */,
-				BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */,
+				BA2349572C875CA7004DD7F9 /* ScanPaperCards */,
 				BA23494B2C78F2A5004DD7F9 /* NearbyExchange */,
 				BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,

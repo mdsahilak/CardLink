@@ -72,6 +72,7 @@ struct CardEditorView: View {
                 
                 Section("Address") {
                     TextEditor(text: $card.address)
+                        .frame(minHeight: 100)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -80,22 +81,14 @@ struct CardEditorView: View {
                     Button(action: {
                         dismiss()
                     }, label: {
-                        Label("Discard", systemImage: "xmark")
+                        Label("Dismiss", systemImage: "chevron.down")
                     })
                 }
                 
                 ToolbarItem(placement: .principal) {
-                    Text("Edit Business Card")
+                    Text("Edit Card")
                         .font(.appTitle3)
                         .foregroundColor(.primaryText)
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        
-                    }, label: {
-                        Label("Save", systemImage: "checkmark")
-                    })
                 }
             }
         }

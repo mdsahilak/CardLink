@@ -51,6 +51,11 @@ struct HomeView: View {
                         })
                     }
                 }
+                .onDelete { offsets in
+                    for offset in offsets {
+                        context.delete(cards[offset])
+                    }
+                }
             }
             .foregroundStyle(.primaryText)
             .navigationBarTitleDisplayMode(.inline)
@@ -67,11 +72,11 @@ struct HomeView: View {
             }, content: {
                 DocumentCameraView(recognizedText: $recognizedText)
             })
-            .fullScreenCover(isPresented: $showNearbyExchange, content: {
-                NavigationStack {
-                    NearbyExchangeView()
-                }
-            })
+//            .fullScreenCover(isPresented: $showNearbyExchange, content: {
+//                NavigationStack {
+//                    NearbyExchangeView()
+//                }
+//            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {

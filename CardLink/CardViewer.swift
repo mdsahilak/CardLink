@@ -45,16 +45,20 @@ struct CardViewer: View {
                         if !card.address.isEmpty {
                             Divider()
                             
-                            Text(card.address)
-                                .multilineTextAlignment(.center)
-                                .font(.appBody)
+                            Link(destination: URL(string: "maps://?address=\(card.address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!) {
+                                Text(card.address)
+                                    .multilineTextAlignment(.center)
+                                    .font(.appBody)
+                            }
                         }
                         
                         if !card.website.isEmpty {
                             Divider()
                             
-                            Text(card.website)
-                                .font(.appCallout)
+                            Link(destination: URL(string: "https://\(card.website)")!) {
+                                Text(card.website)
+                                    .font(.appCallout)
+                            }
                         }
                     }
                     .padding(7)

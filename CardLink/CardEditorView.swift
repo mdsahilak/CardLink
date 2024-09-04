@@ -16,16 +16,16 @@ struct CardEditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Organisation") {
-                    TextField("", text: $card.organisation)
-                }
-                
                 Section("Name") {
                     TextField("", text: $card.name)
                 }
                 
                 Section("Role") {
                     TextField("", text: $card.role)
+                }
+                
+                Section("Organisation") {
+                    TextField("", text: $card.organisation)
                 }
                 
                 Section("Email") {

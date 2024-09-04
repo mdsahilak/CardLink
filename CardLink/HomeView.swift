@@ -23,8 +23,6 @@ struct HomeView: View {
         })
     }
     
-//    @State private var cards: [BusinessCardDraft] = [.mock]
-    
     @State private var searchText = ""
     @State private var showEditor: BusinessCard? = nil
     

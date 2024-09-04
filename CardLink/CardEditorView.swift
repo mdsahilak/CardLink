@@ -15,19 +15,19 @@ struct CardEditorView: View {
         NavigationStack {
             Form {
                 Section("Organisation") {
-                    TextField("Apple, Inc.", text: $card.organisation)
+                    TextField("", text: $card.organisation)
                 }
                 
                 Section("Name") {
-                    TextField("John Appleseed", text: $card.name)
+                    TextField("", text: $card.name)
                 }
                 
                 Section("Role") {
-                    TextField("Chief Demo Officer", text: $card.role)
+                    TextField("", text: $card.role)
                 }
                 
                 Section("Email") {
-                    TextField("john.appleseed@apple.com", text: $card.email)
+                    TextField("", text: $card.email)
                 }
                 
                 Section("Phone Numbers") {
@@ -36,7 +36,9 @@ struct CardEditorView: View {
                             let newNumber = PhoneNumber(context: context)
                             newNumber.value = ""
                             
-                            card.phoneNumbers.append(newNumber)
+                            withAnimation {
+                                card.phoneNumbers.append(newNumber)
+                            }
                         }
                     } label: {
                         Label("Add Phone Number", systemImage: "plus")
@@ -44,7 +46,7 @@ struct CardEditorView: View {
                     
                     ForEach(card.phoneNumbers) { phoneNumber in
                         if let index = card.phoneNumbers.firstIndex(of: phoneNumber) {
-                            TextField("+12 34567890", text: $card.phoneNumbers[index].value)
+                            TextField("", text: $card.phoneNumbers[index].value)
                         }
                     }
                     .onDelete { offsets in
@@ -63,7 +65,7 @@ struct CardEditorView: View {
                 }
                 
                 Section("Website") {
-                    TextField("https://www.apple.com", text: $card.website)
+                    TextField("", text: $card.website)
                 }
                 
                 Section("Address") {

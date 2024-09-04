@@ -8,10 +8,25 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var cards: [BusinessCardDraft] = [.mock]
+    @Environment(\.managedObjectContext) var context
+    
+    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], animation: .default)
+    private var fetchedCards: FetchedResults<BusinessCard>
+    
+    private var cards: [BusinessCard] {
+        fetchedCards.filter({ (card) -> Bool in
+            if searchText.isEmpty {
+                return true
+            } else {
+                return card.name.lowercased().contains(searchText.lowercased())
+            }
+        })
+    }
+    
+//    @State private var cards: [BusinessCardDraft] = [.mock]
     
     @State private var searchText = ""
-    @State private var showEditor: BusinessCardDraft? = nil
+    @State private var showEditor: BusinessCard? = nil
     
     @State private var showNearbyExchange: Bool = false
     @State private var showOCRScreen: Bool = false
@@ -39,11 +54,10 @@ struct HomeView: View {
             }
             .foregroundStyle(.primaryText)
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(item: $showEditor, content: { item in
-                NavigationStack {
-                    CardEditorView()
-                }
-                .presentationDetents([.fraction(0.5)])
+            .sheet(item: $showEditor, onDismiss: {
+                try? context.save()
+            }, content: { cardToView in
+                CardEditorView(card: cardToView)
             })
             .sheet(isPresented: $showOCRScreen, onDismiss: {
                 print("Text: \(recognizedText)")
@@ -88,7 +102,11 @@ struct HomeView: View {
                         }
                         
                         Button {
+                            let newCard = BusinessCard(context: context)
+                            newCard.timestamp = Date()
                             
+                            context.insert(newCard)
+                            showEditor = newCard
                         } label: {
                             Label("Manual Entry", systemImage: "plus")
                         }

@@ -14,6 +14,11 @@ extension BusinessCard {
         return objectID.uriRepresentation().absoluteString
     }
     
+    var timestamp: Date {
+        get { timestamp_ ?? Date() }
+        set { timestamp_ = newValue }
+    }
+    
     // Properties Helpers
     var organisation: String {
         get { organisation_ ?? "" }
@@ -35,9 +40,9 @@ extension BusinessCard {
         set { email_ = newValue }
     }
     
-    var phoneNumbers: [String] {
-        get { phoneNumbers_?.components(separatedBy: "\n") ?? [] }
-        set { phoneNumbers_ = newValue.joined(separator: "\n") }
+    var phoneNumbers: [PhoneNumber] {
+        get { phoneNumbers_?.allObjects as? [PhoneNumber] ?? [] }
+        set { phoneNumbers_ = NSSet(array: newValue) }
     }
     
     var website: String {

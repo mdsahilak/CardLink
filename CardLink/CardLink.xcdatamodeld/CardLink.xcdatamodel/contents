@@ -5,8 +5,13 @@
         <attribute name="email_" optional="YES" attributeType="String"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
         <attribute name="organisation_" optional="YES" attributeType="String"/>
-        <attribute name="phoneNumbers_" optional="YES" attributeType="String"/>
         <attribute name="role_" optional="YES" attributeType="String"/>
+        <attribute name="timestamp_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="website_" optional="YES" attributeType="String"/>
+        <relationship name="phoneNumbers_" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PhoneNumber" inverseName="businessCard" inverseEntity="PhoneNumber"/>
+    </entity>
+    <entity name="PhoneNumber" representedClassName="PhoneNumber" syncable="YES" codeGenerationType="class">
+        <attribute name="value_" optional="YES" attributeType="String"/>
+        <relationship name="businessCard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessCard" inverseName="phoneNumbers_" inverseEntity="BusinessCard"/>
     </entity>
 </model>

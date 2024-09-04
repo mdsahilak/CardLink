@@ -60,7 +60,8 @@ struct HomeView: View {
             .sheet(item: $showEditor, onDismiss: {
                 try? context.save()
             }, content: { cardToView in
-                CardEditorView(card: cardToView)
+                CardViewer(card: cardToView)
+                    .presentationDetents([.fraction(0.44)])
             })
             .sheet(isPresented: $showOCRScreen, onDismiss: {
                 print("Text: \(recognizedText)")

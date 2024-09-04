@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CardEditorView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var context
+    
     @ObservedObject var card: BusinessCard
     
     var body: some View {
@@ -73,7 +75,29 @@ struct CardEditorView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Business Card")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Label("Discard", systemImage: "xmark")
+                    })
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Text("Edit Business Card")
+                        .font(.appTitle3)
+                        .foregroundColor(.primaryText)
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Label("Save", systemImage: "checkmark")
+                    })
+                }
+            }
         }
     }
 }

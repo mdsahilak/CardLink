@@ -9,11 +9,6 @@ import Foundation
 import CoreData
 
 extension BusinessCard {
-    /// The object's objectID returned in string representation
-    var uniqueIdentifier: String {
-        return objectID.uriRepresentation().absoluteString
-    }
-    
     var timestamp: Date {
         get { timestamp_ ?? Date() }
         set { timestamp_ = newValue }
@@ -55,4 +50,18 @@ extension BusinessCard {
         set { address_ = newValue }
     }
     
+}
+
+//MARK: - Mock -
+extension BusinessCard {
+    /// Sample Card for use in SwiftUI Previews.
+    static let previewCard: BusinessCard = {
+        let card = BusinessCard(context: PersistenceController.preview.container.viewContext)
+        
+        card.organisation = "Apple, Inc"
+        card.name = "John Appleseed"
+        card.role = "Chief Demo Officer"
+        
+        return card
+    }()
 }

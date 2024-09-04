@@ -15,14 +15,15 @@
 		BA23494F2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23494E2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift */; };
 		BA2349522C78F405004DD7F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349512C78F405004DD7F9 /* Constants.swift */; };
 		BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */; };
+		BA7ABDAE2C88DB1700E03D8F /* CardViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
 		BAC79B422C25FFED00DBD238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */; };
 		BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B432C25FFED00DBD238 /* Persistence.swift */; };
 		BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B452C25FFED00DBD238 /* CardLink.xcdatamodeld */; };
-		BAD7CC0C2C878E2900B28D1F /* BusinessCard+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0B2C878E2900B28D1F /* BusinessCard+CoreData.swift */; };
-		BAD7CC0E2C88B4E700B28D1F /* PhoneNumber+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+CoreData.swift */; };
+		BAD7CC0C2C878E2900B28D1F /* BusinessCard+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */; };
+		BAD7CC0E2C88B4E700B28D1F /* PhoneNumber+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		BA23494E2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyExchangeViewModel.swift; sourceTree = "<group>"; };
 		BA2349512C78F405004DD7F9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
+		BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewer.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,8 +46,8 @@
 		BAC79B462C25FFED00DBD238 /* CardLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardLink.xcdatamodel; sourceTree = "<group>"; };
 		BAC79B482C25FFED00DBD238 /* CardLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardLink.entitlements; sourceTree = "<group>"; };
 		BAC79B492C25FFED00DBD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAD7CC0B2C878E2900B28D1F /* BusinessCard+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusinessCard+CoreData.swift"; sourceTree = "<group>"; };
-		BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+CoreData.swift"; sourceTree = "<group>"; };
+		BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusinessCard+Helpers.swift"; sourceTree = "<group>"; };
+		BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,8 @@
 		BA23493C2C57F7B7004DD7F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BAD7CC0B2C878E2900B28D1F /* BusinessCard+CoreData.swift */,
-				BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+CoreData.swift */,
+				BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */,
+				BAD7CC0D2C88B4E700B28D1F /* PhoneNumber+Helpers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -124,9 +126,10 @@
 				BA23493C2C57F7B7004DD7F9 /* Models */,
 				BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */,
 				BA23493F2C616A2A004DD7F9 /* HomeView.swift */,
+				BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */,
 				BA2349492C6D3088004DD7F9 /* CardEditorView.swift */,
-				BA2349572C875CA7004DD7F9 /* ScanPaperCards */,
 				BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */,
+				BA2349572C875CA7004DD7F9 /* ScanPaperCards */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
 				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
 				BA2349502C78F3FC004DD7F9 /* Helpers */,
@@ -228,18 +231,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
-				BAD7CC0C2C878E2900B28D1F /* BusinessCard+CoreData.swift in Sources */,
+				BAD7CC0C2C878E2900B28D1F /* BusinessCard+Helpers.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
 				BA23494F2C78F32C004DD7F9 /* NearbyExchangeViewModel.swift in Sources */,
 				BA23494D2C78F31D004DD7F9 /* NearbyExchangeView.swift in Sources */,
 				BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */,
-				BAD7CC0E2C88B4E700B28D1F /* PhoneNumber+CoreData.swift in Sources */,
+				BAD7CC0E2C88B4E700B28D1F /* PhoneNumber+Helpers.swift in Sources */,
 				BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */,
 				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,
 				BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
 				BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */,
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,
+				BA7ABDAE2C88DB1700E03D8F /* CardViewer.swift in Sources */,
 				BA2349522C78F405004DD7F9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

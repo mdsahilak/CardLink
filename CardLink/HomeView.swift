@@ -70,6 +70,7 @@ struct HomeView: View {
                 print("Contents ", contents)
             }, content: {
                 DocumentCameraView(recognizedText: $recognizedText)
+                    .ignoresSafeArea(edges: .all)
             })
 //            .fullScreenCover(isPresented: $showNearbyExchange, content: {
 //                NavigationStack {
@@ -79,9 +80,9 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-                        
+                        showOCRScreen = true
                     }, label: {
-                        Label("Settings", systemImage: "slider.horizontal.3")
+                        Label("Scan Cards", systemImage: "camera.viewfinder")
                     })
                 }
                 

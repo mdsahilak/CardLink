@@ -145,7 +145,7 @@ struct HomeView: View {
         var contents = BusinessCardContent()
         
         // Any line could contain the name on the business card.
-        var potentialNames = text.components(separatedBy: .newlines)
+        var textComponents = text.components(separatedBy: .newlines)
         
         // Create an NSDataDetector to parse the text, searching for various fields of interest.
         let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
@@ -157,8 +157,8 @@ struct HomeView: View {
             let matchedString = String(text[matchStartIdx..<matchEndIdx])
             
             // This line has been matched so it doesn't contain the name on the business card.
-            while !potentialNames.isEmpty && (matchedString.contains(potentialNames[0]) || potentialNames[0].contains(matchedString)) {
-                potentialNames.remove(at: 0)
+            while !textComponents.isEmpty && (matchedString.contains(textComponents[0]) || textComponents[0].contains(matchedString)) {
+                textComponents.remove(at: 0)
             }
         
             switch match.resultType {
@@ -180,9 +180,26 @@ struct HomeView: View {
             }
         }
         
-        if !potentialNames.isEmpty {
-            // Take the top-most unmatched line to be the person/business name.
-            contents.name = potentialNames.first ?? ""
+        // Process the remaining unmatched lines
+        
+        // The top line is the organisation's name
+        // The next line is the person's name
+        // The last line is the role
+        switch textComponents.count {
+        case 3..<Int.max:
+            contents.organisation = textComponents[0].capitalized
+            contents.name = textComponents[1].capitalized
+            contents.role = textComponents[2].capitalized
+            
+        case 2:
+            contents.name = textComponents[0].capitalized
+            contents.role = textComponents[1].capitalized
+            
+        case 1:
+            contents.name = textComponents[0].capitalized
+            
+        default:
+            print("Could not find Name, Role or Organisation!")
         }
         
         return contents

@@ -128,7 +128,9 @@ extension NearbyExchangeViewModel: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         if let message = String(data: data, encoding: .utf8) {
-            self.messages.append(message)
+            DispatchQueue.main.async {
+                self.messages.append(message)
+            }
         } else {
             print("Unable to decode message")
         }

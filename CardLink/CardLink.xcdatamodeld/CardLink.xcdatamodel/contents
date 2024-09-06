@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="BusinessCard" representedClassName="BusinessCard" syncable="YES" codeGenerationType="class">
+        <attribute name="address_" optional="YES" attributeType="String"/>
+        <attribute name="email_" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mobilePhone_" optional="YES" attributeType="String"/>
+        <attribute name="name_" optional="YES" attributeType="String"/>
+        <attribute name="organisation_" optional="YES" attributeType="String"/>
+        <attribute name="role_" optional="YES" attributeType="String"/>
+        <attribute name="telePhone_" optional="YES" attributeType="String"/>
+        <attribute name="timestamp_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="website_" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-    </elements>
 </model>

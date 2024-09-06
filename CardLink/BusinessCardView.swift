@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct BusinessCardView: View {
-    let card: BusinessCard
+    @ObservedObject var card: BusinessCard
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 7) {
                 Text(card.name)
                     .font(.appTitle2)
+                
                 Text(card.role)
                     .font(.appSubheadline)
                 
-                Text(card.company)
+                Text(card.organisation)
                     .font(.appFootnote)
             }
             
@@ -41,11 +42,11 @@ struct BusinessCardView: View {
     }
 }
 
-#Preview {
-    Form {
-        Section {
-            BusinessCardView(card: .mock)
-                .padding()
-        }
-    }
-}
+//#Preview {
+//    Form {
+//        Section {
+//            BusinessCardView(card: .mock)
+//                .padding()
+//        }
+//    }
+//}

@@ -35,9 +35,14 @@ extension BusinessCard {
         set { email_ = newValue }
     }
     
-    var phoneNumbers: [PhoneNumber] {
-        get { phoneNumbers_?.allObjects as? [PhoneNumber] ?? [] }
-        set { phoneNumbers_ = NSSet(array: newValue) }
+    var telePhone: String {
+        get { telePhone_ ?? "" }
+        set { telePhone_ = newValue }
+    }
+    
+    var mobilePhone: String {
+        get { mobilePhone_ ?? "" }
+        set { mobilePhone_ = newValue }
     }
     
     var website: String {
@@ -59,14 +64,8 @@ extension BusinessCard {
         
         email = content.email
         
-        if let context = self.managedObjectContext {
-            for number in content.numbers {
-                let phoneNumber = PhoneNumber(context: context)
-                phoneNumber.value = number
-                
-                addToPhoneNumbers_(phoneNumber)
-            }
-        }
+        telePhone = content.telePhone
+        mobilePhone = content.mobilePhone
         
         website = content.website
         

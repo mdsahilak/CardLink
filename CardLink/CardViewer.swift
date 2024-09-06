@@ -18,46 +18,52 @@ struct CardViewer: View {
             ScrollView {
                 VStack {
                     VStack(alignment: .center, spacing: 7) {
+                        Text(card.organisation)
+                            .font(.appTitle1)
+                        
                         Text(card.name)
-                            .font(.appTitle2)
+                            .font(.appTitle3)
                         
                         Text(card.role)
-                            .font(.appSubheadline)
-                        
-                        Text(card.organisation)
-                            .font(.appFootnote)
+                            .font(.appCallout)
                         
                         Divider()
                         
-                        ForEach(card.phoneNumbers) { phoneNumber in
-                            Link(destination: URL(string: "tel:\(phoneNumber.value)")!) {
-                                Text(phoneNumber.value)
-                                    .font(.appBody)
-                            }
-                                
+                        Link(destination: URL(string: "maps://?address=\(card.address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!) {
+                            Text(card.address)
+                                .multilineTextAlignment(.center)
+                                .font(.appBody)
                         }
+                        
+                        Divider()
                         
                         Link(destination: URL(string: "mailto:\(card.email)")!) {
                             Text(card.email)
                                 .font(.appBody)
                         }
                         
-                        if !card.address.isEmpty {
+                        Divider()
+                        
+                        HStack {
+                            Link(destination: URL(string: "tel:\(card.telePhone)")!) {
+                                Text(card.telePhone)
+                                    .font(.appBody)
+                            }
+                            
                             Divider()
                             
-                            Link(destination: URL(string: "maps://?address=\(card.address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!) {
-                                Text(card.address)
-                                    .multilineTextAlignment(.center)
+                            Link(destination: URL(string: "tel:\(card.telePhone)")!) {
+                                Text(card.mobilePhone)
                                     .font(.appBody)
                             }
                         }
                         
+                        Divider()
+                        
                         if !card.website.isEmpty {
-                            Divider()
-                            
                             Link(destination: URL(string: "https://\(card.website)")!) {
                                 Text(card.website)
-                                    .font(.appCallout)
+                                    .font(.appBody)
                             }
                         }
                     }

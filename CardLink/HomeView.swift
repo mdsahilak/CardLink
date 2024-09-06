@@ -58,7 +58,7 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .sheet(item: $showViewer) { cardToView in
                 CardViewer(card: cardToView)
-                    .presentationDetents([.fraction(0.44)])
+                    .presentationDetents([.fraction(0.5)])
             }
             .sheet(item: $showEditor, onDismiss: {
                 try? context.save()
@@ -144,6 +144,8 @@ struct HomeView: View {
     func parseScannedText(_ text: String) throws -> BusinessCardContent {
         var contents = BusinessCardContent()
         
+        print(text)
+        
         // Any line could contain the name on the business card.
         var textComponents = text.components(separatedBy: .newlines)
         
@@ -166,8 +168,11 @@ struct HomeView: View {
                 contents.address = matchedString
                 
             case .phoneNumber:
-                contents.numbers.append(matchedString)
-                
+                if contents.telePhone.isEmpty {
+                    contents.telePhone = matchedString
+                } else {
+                    contents.mobilePhone = matchedString
+                }
             case .link:
                 if let url = match.url, url.absoluteString.contains("mailto") {
                     contents.email = matchedString
@@ -215,7 +220,8 @@ struct BusinessCardContent {
     
     var email: String = ""
     
-    var numbers: [String] = []
+    var telePhone: String = ""
+    var mobilePhone: String = ""
     
     var website: String = ""
     

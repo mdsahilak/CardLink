@@ -16,58 +16,44 @@ struct CardEditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Name") {
-                    TextField("", text: $card.name)
-                }
-                
-                Section("Role") {
-                    TextField("", text: $card.role)
-                }
-                
-                Section("Organisation") {
-                    TextField("", text: $card.organisation)
+                Section("Profile") {
+                    TextField("Full Name", text: $card.name)
+                    TextField("Job Role", text: $card.role)
+                    TextField("Organisation", text: $card.organisation)
                 }
                 
                 Section("Email") {
-                    TextField("", text: $card.email)
+                    TextField("Email Address", text: $card.email)
                 }
                 
                 Section("Phone Numbers") {
-                    Button {
-                        withAnimation {
-                            let newNumber = PhoneNumber(context: context)
-                            newNumber.value = ""
-                            
-                            withAnimation {
-                                card.phoneNumbers.append(newNumber)
-                            }
-                        }
-                    } label: {
-                        Label("Add Phone Number", systemImage: "plus")
+                    HStack {
+                        Text("T:")
+                            .fontWeight(.semibold)
+                            .minimumScaleFactor(0.7)
+                            .frame(width: 25)
+                            .foregroundStyle(.gray)
+                        
+                        Divider()
+                        
+                        TextField("", text: $card.telePhone)
                     }
                     
-                    ForEach(card.phoneNumbers) { phoneNumber in
-                        if let index = card.phoneNumbers.firstIndex(of: phoneNumber) {
-                            TextField("", text: $card.phoneNumbers[index].value)
-                        }
-                    }
-                    .onDelete { offsets in
-                        print(offsets)
-                        print(card.phoneNumbers)
+                    HStack {
+                        Text("M:")
+                            .fontWeight(.semibold)
+                            .minimumScaleFactor(0.7)
+                            .frame(width: 25)
+                            .foregroundStyle(.gray)
                         
-                        withAnimation {
-                            for offset in offsets {
-                                print("offset: \(offset)")
-                                card.phoneNumbers.remove(at: offset)
-                            }
-                        }
-                        print(offsets)
-                        print(card.phoneNumbers)
+                        Divider()
+                        
+                        TextField("", text: $card.mobilePhone)
                     }
                 }
                 
-                Section("Website") {
-                    TextField("", text: $card.website)
+                Section("Link") {
+                    TextField("Website, Linkedin, Portfolio etc.", text: $card.website)
                 }
                 
                 Section("Address") {
@@ -75,6 +61,7 @@ struct CardEditorView: View {
                         .frame(minHeight: 100)
                 }
             }
+            .scrollIndicators(.hidden)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

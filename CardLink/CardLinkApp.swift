@@ -13,7 +13,7 @@ struct CardLinkApp: App {
     
     init() {
         // Appearance Overrides
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemGray
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemIndigo
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     

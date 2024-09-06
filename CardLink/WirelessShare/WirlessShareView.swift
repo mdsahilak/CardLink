@@ -27,7 +27,7 @@ struct WirlessShareView: View {
                 Divider()
                 
                 ScrollView {
-                    ForEach(model.peers) { peer in
+                    ForEach(Array(model.peers)) { peer in
                         Button(action: {
                             model.connectTo(peer)
                         }, label: {
@@ -36,7 +36,7 @@ struct WirlessShareView: View {
                                     .imageScale(.large)
                                     .foregroundColor(.accentColor)
 
-                                Text(peer.peerId.displayName)
+                                Text(peer.displayName)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             .padding(.vertical, 5)
@@ -51,11 +51,12 @@ struct WirlessShareView: View {
                 }
                 .alert(item: $model.permissionRequest, content: { request in
                     Alert(
-                        title: Text("Would you like to exchange cards with \(request.peerId.displayName)"),
-                        primaryButton: .default(Text("Yes"), action: {
+                        title: Text("Accept Business Card?"),
+                        message: Text("Would you like to recieve a business card from \(request.peerId.displayName)?"),
+                        primaryButton: .default(Text("Accept Business Card"), action: {
                             request.onRequest(true)
                         }),
-                        secondaryButton: .cancel(Text("No"), action: {
+                        secondaryButton: .cancel(Text("Decline"), action: {
                             request.onRequest(false)
                         })
                     )
@@ -85,7 +86,7 @@ struct WirlessShareView: View {
                         }
                         .toolbar {
                             ToolbarItem(placement: .principal) {
-                                Text(peer.peerId.displayName)
+                                Text(peer.displayName)
                             }
                         }
                     }

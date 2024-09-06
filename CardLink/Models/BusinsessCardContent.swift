@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BusinessCardContent {
+struct BusinessCardContent: Codable {
     var name: String = ""
     
     var role: String = ""

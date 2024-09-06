@@ -15,17 +15,17 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
     
-    @Published var peers: [PeerDevice] = []
+    @Published var peers: [MCPeerID] = []
     
-    @Published var permissionRequest: PermitionRequest?
-    
-    @Published var connectedPeer: PeerDevice? = nil
+    @Published var connectedPeer: MCPeerID? = nil
     
     @Published var messages: [String] = []
     
+    @Published var permissionRequest: PermitionRequest?
+    
     func send(string: String) {
-        if let data = string.data(using: .utf8), let peerID = connectedPeer?.peerId{
-            try? session.send(data, toPeers: [peerID], with: .reliable)
+        if let data = string.data(using: .utf8), let peer = connectedPeer {
+            try? session.send(data, toPeers: [peer], with: .reliable)
             
         } else {
             print("Error sending data")
@@ -59,38 +59,39 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
         browser.stopBrowsingForPeers()
     }
     
-    func connectTo(_ peer: PeerDevice) {
-        if session.connectedPeers.contains(peer.peerId) {
-            connectedPeer = peer
-        } else {
-            browser.invitePeer(peer.peerId, to: session, withContext: nil, timeout: 60)
-        }
+    func connectTo(_ peer: MCPeerID) {
+        let card = BusinessCardContent(name: "Sahil Ak", role: "Engineer", organisation: "TimeWave")
+        
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(card)
+        
+        browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
+        
+//        if session.connectedPeers.contains(peer) {
+//            connectedPeer = peer
+//        } else {
+//            let card = BusinessCardContent(name: "Sahil Ak", role: "Engineer", organisation: "TimeWave")
+//            
+//            browser.invitePeer(peer, to: session, withContext: nil, timeout: 60)
+//        }
     }
 }
 
 
 extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
-    struct PeerDevice: Identifiable, Hashable {
-        var id: MCPeerID {
-            peerId
-        }
-        
-        let peerId: MCPeerID
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        if !peers.contains(where: { $0 == peerID }) { peers.append(peerID) }
     }
     
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        peers.append(PeerDevice(peerId: peerID))
-    }
-
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        peers.removeAll(where: { $0.peerId == peerID })
+        peers.removeAll(where: { $0 == peerID })
     }
 }
 
-
 extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
     struct PermitionRequest: Identifiable {
-        let id = UUID()
+        var id: MCPeerID { peerId }
+        
         let peerId: MCPeerID
         let onRequest: (Bool) -> Void
     }
@@ -101,15 +102,28 @@ extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
         withContext context: Data?,
         invitationHandler: @escaping (Bool, MCSession?) -> Void
     ) {
-        
         permissionRequest = PermitionRequest(
             peerId: peerID,
             onRequest: { [weak self] permission in
-                invitationHandler(permission, permission ? self?.session : nil)
+                guard let self else { return }
+                
+                if permission {
+                    let decoder = JSONDecoder()
+                    
+                    if let data = context, let card = try? decoder.decode(BusinessCardContent.self, from: data) {
+                        print(card)
+                    } else {
+                        print("Invite decode error")
+                    }
+                }
+                
+                invitationHandler(false, session)
             }
         )
     }
 }
+
+extension MCPeerID: Identifiable {  }
 
 extension WirelessShareViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {

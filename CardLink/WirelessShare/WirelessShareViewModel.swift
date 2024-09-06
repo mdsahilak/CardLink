@@ -11,9 +11,8 @@ import Combine
 
 @MainActor
 final class WirelessShareViewModel: NSObject, ObservableObject {
-    private let advertiser: MCNearbyServiceAdvertiser
     private let session: MCSession
-    private let serviceType = "nearby-devices"
+    private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
     
     @Published var peers: [PeerDevice] = []
@@ -23,24 +22,23 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     @Published var connectedPeer: PeerDevice? = nil
     
     @Published var messages: [String] = []
+    
     func send(string: String) {
         if let data = string.data(using: .utf8), let peerID = connectedPeer?.peerId{
             try? session.send(data, toPeers: [peerID], with: .reliable)
             
         } else {
-            print("Error sendind data")
+            print("Error sending data")
         }
     }
     
     override init() {
         let peer = MCPeerID(displayName: UIDevice.current.name)
+        let serviceType = Constants.wirelessShareServiceType
+        
         session = MCSession(peer: peer)
         
-        advertiser = MCNearbyServiceAdvertiser(
-            peer: peer,
-            discoveryInfo: nil,
-            serviceType: serviceType
-        )
+        advertiser = MCNearbyServiceAdvertiser(peer: peer, discoveryInfo: nil, serviceType: serviceType)
         
         browser = MCNearbyServiceBrowser(peer: peer, serviceType: serviceType)
         
@@ -73,7 +71,10 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
 
 extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
     struct PeerDevice: Identifiable, Hashable {
-        let id = UUID()
+        var id: MCPeerID {
+            peerId
+        }
+        
         let peerId: MCPeerID
     }
     
@@ -100,6 +101,7 @@ extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
         withContext context: Data?,
         invitationHandler: @escaping (Bool, MCSession?) -> Void
     ) {
+        
         permissionRequest = PermitionRequest(
             peerId: peerID,
             onRequest: { [weak self] permission in

@@ -4,8 +4,8 @@
 <dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_nearby-devices._tcp</string>
-		<string>_nearby-devices._upd</string>
+		<string>_cardlink-xchge._tcp</string>
+		<string>_cardlink-xchge._upd</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>To search for nearby devices for exchanging cards</string>

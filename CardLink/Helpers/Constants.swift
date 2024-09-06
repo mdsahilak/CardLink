@@ -8,5 +8,5 @@
 import Foundation
 
 enum Constants {
-    static let nearbyExchangeIdentifier: String = "cardlink-exchange"
+    static let wirelessShareServiceType: String = "cardlink-xchge"
 }

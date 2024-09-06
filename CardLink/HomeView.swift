@@ -211,22 +211,7 @@ struct HomeView: View {
     }
 }
 
-struct BusinessCardContent {
-    var name: String = ""
-    
-    var role: String = ""
-    
-    var organisation: String = ""
-    
-    var email: String = ""
-    
-    var telePhone: String = ""
-    var mobilePhone: String = ""
-    
-    var website: String = ""
-    
-    var address: String = ""
-}
+
 
 #Preview {
     HomeView()

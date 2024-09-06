@@ -50,6 +50,29 @@ extension BusinessCard {
         set { address_ = newValue }
     }
     
+    
+    // MARK:
+    func update(with content: BusinessCardContent) {
+        name = content.name
+        role = content.role
+        organisation = content.organisation
+        
+        email = content.email
+        
+        if let context = self.managedObjectContext {
+            for number in content.numbers {
+                let phoneNumber = PhoneNumber(context: context)
+                phoneNumber.value = number
+                
+                addToPhoneNumbers_(phoneNumber)
+            }
+        }
+        
+        website = content.website
+        
+        address = content.address
+    }
+    
 }
 
 //MARK: - Mock -

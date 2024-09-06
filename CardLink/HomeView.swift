@@ -24,14 +24,13 @@ struct HomeView: View {
     }
     
     @State private var searchText = ""
-    @State private var showEditor: BusinessCard? = nil
     
-    @State private var showNearbyExchange: Bool = false
+    @State private var showEditor: BusinessCard? = nil
+    @State private var showViewer: BusinessCard? = nil
+    
     @State private var showOCRScreen: Bool = false
     
     @State private var recognizedText: String = ""
-    
-    @State private var contents = BusinessCardContents()
     
     var body: some View {
         NavigationStack {
@@ -43,7 +42,7 @@ struct HomeView: View {
                 ForEach(cards) { card in
                     Section {
                         Button(action: {
-                            showEditor = card
+                            showViewer = card
                         }, label: {
                             BusinessCardView(card: card)
                         })
@@ -57,26 +56,38 @@ struct HomeView: View {
             }
             .foregroundStyle(.primaryText)
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $showViewer) { cardToView in
+                CardViewer(card: cardToView)
+                    .presentationDetents([.fraction(0.44)])
+            }
             .sheet(item: $showEditor, onDismiss: {
                 try? context.save()
             }, content: { cardToView in
-                CardViewer(card: cardToView)
-                    .presentationDetents([.fraction(0.44)])
+                CardEditorView(card: cardToView)
             })
             .sheet(isPresented: $showOCRScreen, onDismiss: {
-                print("Text: \(recognizedText)")
-                print("----")
-                parseTextContents(text: recognizedText)
-                print("Contents ", contents)
+                if !recognizedText.isEmpty {
+                    if let contents = try? parseScannedText(recognizedText) {
+                        let newCard = BusinessCard(context: context)
+                        newCard.timestamp = .now
+                        
+                        newCard.update(with: contents)
+                        
+                        context.insert(newCard)
+                        
+                        showEditor = newCard
+                    } else {
+                        // TODO: Show an error - "Error parsing scanned card. Please try again."
+                        
+                    }
+                }
+                
+                recognizedText = ""
             }, content: {
                 DocumentCameraView(recognizedText: $recognizedText)
                     .ignoresSafeArea(edges: .all)
+                    .interactiveDismissDisabled()
             })
-//            .fullScreenCover(isPresented: $showNearbyExchange, content: {
-//                NavigationStack {
-//                    NearbyExchangeView()
-//                }
-//            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
@@ -93,30 +104,14 @@ struct HomeView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button {
-                            showNearbyExchange = true
-                        } label: {
-                            Label("Nearby Exchange", systemImage: "shared.with.you")
-                        }
+                    Button {
+                        let newCard = BusinessCard(context: context)
+                        newCard.timestamp = Date()
                         
-                        Button {
-                            showOCRScreen = true
-                        } label: {
-                            Label("Scan Paper Card", systemImage: "camera.viewfinder")
-                        }
-                        
-                        Button {
-                            let newCard = BusinessCard(context: context)
-                            newCard.timestamp = Date()
-                            
-                            context.insert(newCard)
-                            showEditor = newCard
-                        } label: {
-                            Label("Manual Entry", systemImage: "plus")
-                        }
+                        context.insert(newCard)
+                        showEditor = newCard
                     } label: {
-                        Label("Add Card", systemImage: "plus")
+                        Label("Add Manual Card", systemImage: "plus")
                     }
                 }
             }
@@ -146,84 +141,71 @@ struct HomeView: View {
         .accessibilityAddTraits(.isSearchField)
     }
     
-    func parseTextContents(text: String) {
-        do {
-            // Any line could contain the name on the business card.
-            var potentialNames = text.components(separatedBy: .newlines)
+    func parseScannedText(_ text: String) throws -> BusinessCardContent {
+        var contents = BusinessCardContent()
+        
+        // Any line could contain the name on the business card.
+        var potentialNames = text.components(separatedBy: .newlines)
+        
+        // Create an NSDataDetector to parse the text, searching for various fields of interest.
+        let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
+        let matches = detector.matches(in: text, options: .init(), range: NSRange(location: 0, length: text.count))
+        
+        for match in matches {
+            let matchStartIdx = text.index(text.startIndex, offsetBy: match.range.location)
+            let matchEndIdx = text.index(text.startIndex, offsetBy: match.range.location + match.range.length)
+            let matchedString = String(text[matchStartIdx..<matchEndIdx])
             
-            // Create an NSDataDetector to parse the text, searching for various fields of interest.
-            let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
-            let matches = detector.matches(in: text, options: .init(), range: NSRange(location: 0, length: text.count))
-            
-            for match in matches {
-                let matchStartIdx = text.index(text.startIndex, offsetBy: match.range.location)
-                let matchEndIdx = text.index(text.startIndex, offsetBy: match.range.location + match.range.length)
-                let matchedString = String(text[matchStartIdx..<matchEndIdx])
-                print(potentialNames)
-                // This line has been matched so it doesn't contain the name on the business card.
-                while !potentialNames.isEmpty && (matchedString.contains(potentialNames[0]) || potentialNames[0].contains(matchedString)) {
-                    potentialNames.remove(at: 0)
-                }
-            
-                switch match.resultType {
-                case .address:
-                    contents.address = matchedString
-                case .phoneNumber:
-                    contents.numbers.append(matchedString)
-                case .link:
-                    if (match.url?.absoluteString.contains("mailto"))! {
-                        contents.email = matchedString
-                    } else {
-                        contents.website = matchedString
-                    }
-                default:
-                    print("\(matchedString) type:\(match.resultType)")
-                }
+            // This line has been matched so it doesn't contain the name on the business card.
+            while !potentialNames.isEmpty && (matchedString.contains(potentialNames[0]) || potentialNames[0].contains(matchedString)) {
+                potentialNames.remove(at: 0)
             }
-            
-            
-            if !potentialNames.isEmpty {
-                // Take the top-most unmatched line to be the person/business name.
-                contents.name = potentialNames.first
+        
+            switch match.resultType {
+            case .address:
+                contents.address = matchedString
+                
+            case .phoneNumber:
+                contents.numbers.append(matchedString)
+                
+            case .link:
+                if let url = match.url, url.absoluteString.contains("mailto") {
+                    contents.email = matchedString
+                } else {
+                    contents.website = matchedString
+                }
+                
+            default:
+                print("\(matchedString) type:\(match.resultType)")
             }
-        } catch {
-            print(error)
         }
-    }
-}
-
-struct BusinessCardContents {
-    typealias CardContentField = (name: String, value: String)
-    
-    var name: String?
-    var numbers = [String]()
-    var website: String?
-    var address: String?
-    var email: String?
-    
-    func availableContents() -> [CardContentField] {
-        var contents = [CardContentField]()
- 
-        if let name = self.name {
-            contents.append(("Name", name))
-        }
-        numbers.forEach { (number) in
-            contents.append(("Number", number))
-        }
-        if let website = self.website {
-            contents.append(("Website", website))
-        }
-        if let address = self.address {
-            contents.append(("Address", address))
-        }
-        if let email = self.email {
-            contents.append(("Email", email))
+        
+        if !potentialNames.isEmpty {
+            // Take the top-most unmatched line to be the person/business name.
+            contents.name = potentialNames.first ?? ""
         }
         
         return contents
     }
 }
 
+struct BusinessCardContent {
+    var name: String = ""
+    
+    var role: String = ""
+    
+    var organisation: String = ""
+    
+    var email: String = ""
+    
+    var numbers: [String] = []
+    
+    var website: String = ""
+    
+    var address: String = ""
+}
+
 #Preview {
     HomeView()
 }
+

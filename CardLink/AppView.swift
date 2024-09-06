@@ -11,7 +11,7 @@ struct AppView: View {
     var body: some View {
         TabView {
             
-            NearbyExchangeView()
+            WirlessShareView()
                 .tabItem {
                     Label("Wireless Share", systemImage: "shared.with.you")
                 }

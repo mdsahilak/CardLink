@@ -1,5 +1,5 @@
 //
-//  NearbyExchangeViewModel.swift
+//  WirelessShareViewModel.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 23/08/2024.
@@ -10,7 +10,7 @@ import MultipeerConnectivity
 import Combine
 
 @MainActor
-final class NearbyExchangeViewModel: NSObject, ObservableObject {
+final class WirelessShareViewModel: NSObject, ObservableObject {
     private let advertiser: MCNearbyServiceAdvertiser
     private let session: MCSession
     private let serviceType = "nearby-devices"
@@ -71,7 +71,7 @@ final class NearbyExchangeViewModel: NSObject, ObservableObject {
 }
 
 
-extension NearbyExchangeViewModel: MCNearbyServiceBrowserDelegate {
+extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
     struct PeerDevice: Identifiable, Hashable {
         let id = UUID()
         let peerId: MCPeerID
@@ -87,7 +87,7 @@ extension NearbyExchangeViewModel: MCNearbyServiceBrowserDelegate {
 }
 
 
-extension NearbyExchangeViewModel: MCNearbyServiceAdvertiserDelegate {
+extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
     struct PermitionRequest: Identifiable {
         let id = UUID()
         let peerId: MCPeerID
@@ -109,7 +109,7 @@ extension NearbyExchangeViewModel: MCNearbyServiceAdvertiserDelegate {
     }
 }
 
-extension NearbyExchangeViewModel: MCSessionDelegate {
+extension WirelessShareViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         return
     }

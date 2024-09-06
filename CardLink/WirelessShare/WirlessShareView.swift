@@ -1,5 +1,5 @@
 //
-//  NearbyExchangeView.swift
+//  WirlessShareView.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 23/08/2024.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct NearbyExchangeView: View {
+struct WirlessShareView: View {
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var model = NearbyExchangeViewModel()
+    @StateObject var model = WirelessShareViewModel()
 
     var body: some View {
         NavigationStack {
@@ -79,16 +79,7 @@ struct NearbyExchangeView: View {
             })
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Searching for Peers")
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Label("Dismiss", systemImage: "xmark")
-                    }
-
+                    Text("Scanning for Nearby Devices")
                 }
             }
         }
@@ -97,5 +88,5 @@ struct NearbyExchangeView: View {
 
 
 #Preview {
-    NearbyExchangeView()
+    WirlessShareView()
 }

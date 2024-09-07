@@ -91,7 +91,7 @@ struct CardViewer: View {
                 }
             }
             .sheet(isPresented: $showEditor) {
-                CardEditorView(content: card.getContentDraft()) { editedCardContent in
+                CardEditorView(content: card.content()) { editedCardContent in
                     card.update(with: editedCardContent)
                     
                     try? context.save()

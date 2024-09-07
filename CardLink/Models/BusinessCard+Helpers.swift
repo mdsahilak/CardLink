@@ -57,7 +57,7 @@ extension BusinessCard {
     
     
     // MARK: Edit & Save Functionality
-    func getContentDraft() -> BusinessCardContent {
+    func content() -> BusinessCardContent {
         BusinessCardContent(
             name: name, 
             role: role,

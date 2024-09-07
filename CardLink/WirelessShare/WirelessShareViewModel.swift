@@ -60,11 +60,9 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
         browser.stopBrowsingForPeers()
     }
     
-    func connectTo(_ peer: MCPeerID) {
-        let card = BusinessCardContent(name: "Sahil Ak", role: "Engineer", organisation: "TimeWave")
-        
+    func connectTo(_ peer: MCPeerID, content: BusinessCardContent) {
         let encoder = JSONEncoder()
-        let data = try! encoder.encode(card)
+        let data = try! encoder.encode(content)
         
         browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
         

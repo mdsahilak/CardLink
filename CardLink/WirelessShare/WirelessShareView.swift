@@ -1,23 +1,35 @@
 //
-//  WirlessShareView.swift
+//  WirelessShareView.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 23/08/2024.
 //
 
 import SwiftUI
+import MultipeerConnectivity
 
-struct WirlessShareView: View {
+struct WirelessShareView: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var model = WirelessShareViewModel()
-
+    @StateObject private var vm = WirelessShareViewModel()
+    
+    @State private var showCardSelectorForPeer: MCPeerID? = nil
+    
+    @State private var showSelectCardError: Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack {
                 RadarView()
                     .frame(maxHeight: 500)
+                    .alert("Please Select a Card", isPresented: $showSelectCardError) {
+                        Button(role: .cancel) {
+                            
+                        } label: {
+                            Text("OK")
+                        }
+                    }
                 
                 Divider()
                 
@@ -28,9 +40,9 @@ struct WirlessShareView: View {
                 Divider()
                 
                 ScrollView {
-                    ForEach(Array(model.peers)) { peer in
+                    ForEach(Array(vm.peers)) { peer in
                         Button(action: {
-                            model.connectTo(peer)
+                            showCardSelectorForPeer = peer
                         }, label: {
                             HStack {
                                 Image(systemName: "iphone.gen1")
@@ -45,12 +57,12 @@ struct WirlessShareView: View {
                     }
                 }
                 .onAppear {
-                    model.startBrowsing()
+                    vm.startBrowsing()
                 }
                 .onDisappear {
-                    model.finishBrowsing()
+                    vm.finishBrowsing()
                 }
-                .alert(item: $model.permissionRequest, content: { request in
+                .alert(item: $vm.permissionRequest, content: { request in
                     Alert(
                         title: Text("Accept Business Card?"),
                         message: Text("Would you like to recieve a business card from \(request.peerId.displayName)?"),
@@ -62,8 +74,11 @@ struct WirlessShareView: View {
                         })
                     )
                 })
-                .sheet(item: $model.acceptedContent) { content in
-                    CardEditorView(content: content) { editedContent in
+                .sheet(item: $showCardSelectorForPeer) { peer in
+                    CardPickerView(vm: vm, peer: peer)
+                }
+                .sheet(item: $vm.acceptedContent) { content in
+                    CardEditorView(type: .create, content: content) { editedContent in
                         let newCard = BusinessCard(context: context)
                         newCard.timestamp = Date()
                         
@@ -88,6 +103,39 @@ struct WirlessShareView: View {
 }
 
 
+struct CardPickerView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @ObservedObject var vm: WirelessShareViewModel
+    
+    var peer: MCPeerID
+    
+    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], animation: .default)
+    private var fetchedCards: FetchedResults<BusinessCard>
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    ForEach(fetchedCards) { card in
+                        Button {
+                            dismiss()
+                            
+                            vm.connectTo(peer, content: card.content())
+                        } label: {
+                            Text("\(card.organisation) - \(card.name) - \(card.role)")
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Select the Card to Share")
+        }
+        .presentationDetents([.medium])
+    }
+}
+
 #Preview {
-    WirlessShareView()
+    WirelessShareView()
 }

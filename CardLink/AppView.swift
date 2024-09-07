@@ -10,8 +10,7 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
-            
-            WirlessShareView()
+            WirelessShareView()
                 .tabItem {
                     Label("Wireless Share", systemImage: "shared.with.you")
                 }
@@ -19,12 +18,6 @@ struct AppView: View {
             HomeView()
                 .tabItem {
                     Label("Cards", systemImage: "square.stack")
-                }
-            
-            
-            Text("My Card")
-                .tabItem {
-                    Label("My Card", systemImage: "person.text.rectangle")
                 }
         }
     }

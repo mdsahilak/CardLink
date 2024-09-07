@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct BusinessCardContent: Codable {
+struct BusinessCardContent: Codable, Identifiable {
+    var id: String { "\(email) \(telePhone) \(mobilePhone)" }
+    
     var name: String = ""
     
     var role: String = ""

@@ -25,7 +25,7 @@ struct HomeView: View {
     
     @State private var searchText = ""
     
-    @State private var showEditor: BusinessCard? = nil
+    @State private var showEditorForNewCardContent: BusinessCardContent? = nil
     @State private var showViewer: BusinessCard? = nil
     
     @State private var showOCRScreen: Bool = false
@@ -60,34 +60,39 @@ struct HomeView: View {
                 CardViewer(card: cardToView)
                     .presentationDetents([.fraction(0.5)])
             }
-            .sheet(item: $showEditor, onDismiss: {
-                try? context.save()
-            }, content: { cardToView in
-                CardEditorView(card: cardToView)
-            })
-            .sheet(isPresented: $showOCRScreen, onDismiss: {
-                if !recognizedText.isEmpty {
-                    if let contents = try? parseScannedText(recognizedText) {
-                        let newCard = BusinessCard(context: context)
-                        newCard.timestamp = .now
-                        
-                        newCard.update(with: contents)
-                        
-                        context.insert(newCard)
-                        
-                        showEditor = newCard
-                    } else {
-                        // TODO: Show an error - "Error parsing scanned card. Please try again."
-                        
-                    }
+            .sheet(item: $showEditorForNewCardContent) { content in
+                CardEditorView(type: .create, content: content) { editedCardContent in
+                    let newCard = BusinessCard(context: context)
+                    newCard.timestamp = Date()
+                    
+                    newCard.update(with: editedCardContent)
+                    
+                    try? context.save()
                 }
-                
-                recognizedText = ""
-            }, content: {
-                DocumentCameraView(recognizedText: $recognizedText)
-                    .ignoresSafeArea(edges: .all)
-                    .interactiveDismissDisabled()
-            })
+            }
+//            .sheet(isPresented: $showOCRScreen, onDismiss: {
+//                if !recognizedText.isEmpty {
+//                    if let contents = try? parseScannedText(recognizedText) {
+//                        let newCard = BusinessCard(context: context)
+//                        newCard.timestamp = .now
+//                        
+//                        newCard.update(with: contents)
+//                        
+//                        context.insert(newCard)
+//                        
+//                        showEditor = newCard
+//                    } else {
+//                        // TODO: Show an error - "Error parsing scanned card. Please try again."
+//                        
+//                    }
+//                }
+//                
+//                recognizedText = ""
+//            }, content: {
+//                DocumentCameraView(recognizedText: $recognizedText)
+//                    .ignoresSafeArea(edges: .all)
+//                    .interactiveDismissDisabled()
+//            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
@@ -105,11 +110,9 @@ struct HomeView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        let newCard = BusinessCard(context: context)
-                        newCard.timestamp = Date()
+                        let newContent = BusinessCardContent()
                         
-                        context.insert(newCard)
-                        showEditor = newCard
+                        showEditorForNewCardContent = newContent
                     } label: {
                         Label("Add Manual Card", systemImage: "plus")
                     }

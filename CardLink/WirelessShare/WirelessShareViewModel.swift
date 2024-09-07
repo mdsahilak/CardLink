@@ -22,6 +22,7 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     @Published var messages: [String] = []
     
     @Published var permissionRequest: PermitionRequest?
+    @Published var acceptedContent: BusinessCardContent? = nil
     
     func send(string: String) {
         if let data = string.data(using: .utf8), let peer = connectedPeer {
@@ -110,8 +111,10 @@ extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
                 if permission {
                     let decoder = JSONDecoder()
                     
-                    if let data = context, let card = try? decoder.decode(BusinessCardContent.self, from: data) {
-                        print(card)
+                    if let data = context, let content = try? decoder.decode(BusinessCardContent.self, from: data) {
+                        DispatchQueue.main.async {
+                            self.acceptedContent = content
+                        }
                     } else {
                         print("Invite decode error")
                     }

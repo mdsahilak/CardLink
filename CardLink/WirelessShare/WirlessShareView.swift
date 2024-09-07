@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WirlessShareView: View {
+    @Environment(\.managedObjectContext) var context
     @Environment(\.dismiss) var dismiss
     
     @StateObject var model = WirelessShareViewModel()
@@ -61,37 +62,18 @@ struct WirlessShareView: View {
                         })
                     )
                 })
-                .sheet(item: $model.connectedPeer, content: { peer in
-                    NavigationStack {
-                        VStack {
-                            Text("Messages")
-                            
-                            Divider()
-                            
-                            ScrollView {
-                                VStack {
-                                    ForEach(model.messages, id: \.self) { message in
-                                        Text(message)
-                                    }
-                                }
-                            }
-                            
-                            Divider()
-                            
-                            Button("Send Random Message") {
-                                model.send(string: UUID().uuidString)
-                            }
-                            .buttonStyle(.bordered)
-                            .padding()
-                        }
-                        .toolbar {
-                            ToolbarItem(placement: .principal) {
-                                Text(peer.displayName)
-                            }
-                        }
+                .sheet(item: $model.acceptedContent) { content in
+                    CardEditorView(content: content) { editedContent in
+                        let newCard = BusinessCard(context: context)
+                        newCard.timestamp = Date()
+                        
+                        newCard.update(with: editedContent)
+                        
+                        context.insert(newCard)
+                        
+                        try? context.save()
                     }
-                    
-                })
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

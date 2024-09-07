@@ -11,19 +11,23 @@ struct CardEditorView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var context
     
-    @ObservedObject var card: BusinessCard
+    var type: EditorType = .edit
+    
+    @State var content: BusinessCardContent
+    
+    var saveAction: (BusinessCardContent) -> Void
     
     var body: some View {
         NavigationStack {
             Form {
                 Section("Profile") {
-                    TextField("Full Name", text: $card.name)
-                    TextField("Job Role", text: $card.role)
-                    TextField("Organisation", text: $card.organisation)
+                    TextField("Full Name", text: $content.name)
+                    TextField("Job Role", text: $content.role)
+                    TextField("Organisation", text: $content.organisation)
                 }
                 
                 Section("Email") {
-                    TextField("Email Address", text: $card.email)
+                    TextField("Email Address", text: $content.email)
                 }
                 
                 Section("Phone Numbers") {
@@ -36,7 +40,7 @@ struct CardEditorView: View {
                         
                         Divider()
                         
-                        TextField("", text: $card.telePhone)
+                        TextField("", text: $content.telePhone)
                     }
                     
                     HStack {
@@ -48,16 +52,16 @@ struct CardEditorView: View {
                         
                         Divider()
                         
-                        TextField("", text: $card.mobilePhone)
+                        TextField("", text: $content.mobilePhone)
                     }
                 }
                 
                 Section("Link") {
-                    TextField("Website, Linkedin, Portfolio etc.", text: $card.website)
+                    TextField("Website, Linkedin, Portfolio etc.", text: $content.website)
                 }
                 
                 Section("Address") {
-                    TextEditor(text: $card.address)
+                    TextEditor(text: $content.address)
                         .frame(minHeight: 100)
                 }
             }
@@ -68,17 +72,31 @@ struct CardEditorView: View {
                     Button(action: {
                         dismiss()
                     }, label: {
-                        Label("Dismiss", systemImage: "chevron.down")
+                        Label("Dismiss", systemImage: "xmark")
                     })
                 }
                 
                 ToolbarItem(placement: .principal) {
-                    Text("Edit Card")
+                    Text("\(type.rawValue.capitalized) Card")
                         .font(.appTitle3)
                         .foregroundColor(.primaryText)
                 }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        saveAction(content)
+                        dismiss()
+                    }, label: {
+                        Label("Save", systemImage: "checkmark")
+                    })
+                }
             }
         }
+    }
+    
+    enum EditorType: String {
+        case edit
+        case create
     }
 }
 

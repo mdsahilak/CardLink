@@ -45,15 +45,26 @@ struct WirelessShareView: View {
                             showCardSelectorForPeer = peer
                         }, label: {
                             HStack {
-                                Image(systemName: "iphone.gen1")
+                                Spacer()
+                                
+                                Image(systemName: "antenna.radiowaves.left.and.right.circle.fill")
                                     .imageScale(.large)
+                                    .font(.appTitle1)
                                     .foregroundColor(.accentColor)
 
                                 Text(peer.displayName)
                                     .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Spacer()
                             }
                             .padding(.vertical, 5)
                         })
+                        .padding(7)
+                        .background(content: {
+                            RoundedRectangle(cornerRadius: 7)
+                                .fill(Color(.buttonBackground))
+                        })
+                        .padding()
                     }
                 }
                 .onAppear {

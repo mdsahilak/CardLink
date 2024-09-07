@@ -21,7 +21,7 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     
     @Published var messages: [String] = []
     
-    @Published var permissionRequest: PermitionRequest?
+    @Published var permissionRequest: PermissionRequest?
     @Published var acceptedContent: BusinessCardContent? = nil
     
     func send(string: String) {
@@ -88,7 +88,7 @@ extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
 }
 
 extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
-    struct PermitionRequest: Identifiable {
+    struct PermissionRequest: Identifiable {
         var id: MCPeerID { peerId }
         
         let peerId: MCPeerID
@@ -101,7 +101,7 @@ extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
         withContext context: Data?,
         invitationHandler: @escaping (Bool, MCSession?) -> Void
     ) {
-        permissionRequest = PermitionRequest(
+        permissionRequest = PermissionRequest(
             peerId: peerID,
             onRequest: { [weak self] permission in
                 guard let self else { return }

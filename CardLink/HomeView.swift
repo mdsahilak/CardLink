@@ -70,29 +70,22 @@ struct HomeView: View {
                     try? context.save()
                 }
             }
-//            .sheet(isPresented: $showOCRScreen, onDismiss: {
-//                if !recognizedText.isEmpty {
-//                    if let contents = try? parseScannedText(recognizedText) {
-//                        let newCard = BusinessCard(context: context)
-//                        newCard.timestamp = .now
-//                        
-//                        newCard.update(with: contents)
-//                        
-//                        context.insert(newCard)
-//                        
-//                        showEditor = newCard
-//                    } else {
-//                        // TODO: Show an error - "Error parsing scanned card. Please try again."
-//                        
-//                    }
-//                }
-//                
-//                recognizedText = ""
-//            }, content: {
-//                DocumentCameraView(recognizedText: $recognizedText)
-//                    .ignoresSafeArea(edges: .all)
-//                    .interactiveDismissDisabled()
-//            })
+            .sheet(isPresented: $showOCRScreen, onDismiss: {
+                if !recognizedText.isEmpty {
+                    if let content = try? parseScannedText(recognizedText) {
+                        showEditorForNewCardContent = content
+                    } else {
+                        // TODO: Show an error - "Error parsing scanned card. Please try again."
+                        print("Could not parse text!")
+                    }
+                }
+                
+                recognizedText = ""
+            }, content: {
+                DocumentCameraView(recognizedText: $recognizedText)
+                    .ignoresSafeArea(edges: .all)
+                    .interactiveDismissDisabled()
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {

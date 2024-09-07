@@ -10,14 +10,14 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
-            WirelessShareView()
-                .tabItem {
-                    Label("Wireless Share", systemImage: "shared.with.you")
-                }
-            
             HomeView()
                 .tabItem {
                     Label("Cards", systemImage: "square.stack")
+                }
+            
+            WirelessShareView()
+                .tabItem {
+                    Label("Wireless Share", systemImage: "shared.with.you")
                 }
         }
     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.managedObjectContext) var context
     
-    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], animation: .default)
+    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], predicate: NSPredicate(format: "isTrashed_ == %@", NSNumber(value: false)), animation: .default)
     private var fetchedCards: FetchedResults<BusinessCard>
     
     private var cards: [BusinessCard] {
@@ -27,6 +27,8 @@ struct HomeView: View {
     
     @State private var showEditorForNewCardContent: BusinessCardContent? = nil
     @State private var showViewer: BusinessCard? = nil
+    
+    @State private var showTrash: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -46,7 +48,7 @@ struct HomeView: View {
                 }
                 .onDelete { offsets in
                     for offset in offsets {
-                        context.delete(cards[offset])
+                        cards[offset].isTrashed = true
                     }
                 }
             }
@@ -66,10 +68,13 @@ struct HomeView: View {
                     try? context.save()
                 }
             }
+            .sheet(isPresented: $showTrash, content: {
+                TrashView()
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-
+                        showTrash = true
                     }, label: {
                         Label("Recently Deleted", systemImage: "trash.circle")
                     })

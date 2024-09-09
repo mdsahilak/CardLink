@@ -20,6 +20,12 @@
 		BA7ABDB42C8B6ECE00E03D8F /* BusinsessCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */; };
 		BA7ABDB62C8B727A00E03D8F /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDB52C8B727A00E03D8F /* RadarView.swift */; };
 		BA7ABDBA2C8F8CA500E03D8F /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDB92C8F8CA500E03D8F /* ScannerView.swift */; };
+		BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDBB2C8F91DE00E03D8F /* TrashView.swift */; };
+		BA7ABDBE2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDBD2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift */; };
+		BA7ABDC02C8F92C300E03D8F /* HapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDBF2C8F92C300E03D8F /* HapticController.swift */; };
+		BA7ABDC22C8F944E00E03D8F /* ScaledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */; };
+		BA7ABDC42C8F946D00E03D8F /* TappedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */; };
+		BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
@@ -44,6 +50,12 @@
 		BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinsessCardContent.swift; sourceTree = "<group>"; };
 		BA7ABDB52C8B727A00E03D8F /* RadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		BA7ABDB92C8F8CA500E03D8F /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		BA7ABDBB2C8F91DE00E03D8F /* TrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
+		BA7ABDBD2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+ExecuteAndMergeChanges.swift"; sourceTree = "<group>"; };
+		BA7ABDBF2C8F92C300E03D8F /* HapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticController.swift; sourceTree = "<group>"; };
+		BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledButtonStyle.swift; sourceTree = "<group>"; };
+		BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedButtonStyle.swift; sourceTree = "<group>"; };
+		BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivityViewModifier.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */,
+				BA7ABDBD2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -98,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2349512C78F405004DD7F9 /* Constants.swift */,
+				BA7ABDBF2C8F92C300E03D8F /* HapticController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -138,10 +152,14 @@
 				BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */,
 				BA2349492C6D3088004DD7F9 /* CardEditorView.swift */,
 				BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */,
+				BA7ABDBB2C8F91DE00E03D8F /* TrashView.swift */,
 				BA23494B2C78F2A5004DD7F9 /* WirelessShare */,
 				BA2349572C875CA7004DD7F9 /* OCRScan */,
 				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
 				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
+				BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */,
+				BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */,
+				BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */,
 				BA2349502C78F3FC004DD7F9 /* Helpers */,
 				BA2349442C650D59004DD7F9 /* Extensions */,
 				BAD7CC0F2C88C77C00B28D1F /* Deprecated */,
@@ -246,17 +264,23 @@
 				BA7ABDB22C8A0DF100E03D8F /* AppView.swift in Sources */,
 				BA23494D2C78F31D004DD7F9 /* WirelessShareView.swift in Sources */,
 				BA7ABDB62C8B727A00E03D8F /* RadarView.swift in Sources */,
+				BA7ABDC42C8F946D00E03D8F /* TappedButtonStyle.swift in Sources */,
 				BA23494A2C6D3088004DD7F9 /* CardEditorView.swift in Sources */,
 				BA2349402C616A2A004DD7F9 /* HomeView.swift in Sources */,
+				BA7ABDBE2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift in Sources */,
+				BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */,
 				BA7ABDBA2C8F8CA500E03D8F /* ScannerView.swift in Sources */,
 				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,
 				BA7ABDB42C8B6ECE00E03D8F /* BusinsessCardContent.swift in Sources */,
+				BA7ABDC02C8F92C300E03D8F /* HapticController.swift in Sources */,
+				BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */,
 				BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
 				BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */,
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,
 				BA7ABDAE2C88DB1700E03D8F /* CardViewer.swift in Sources */,
 				BA2349522C78F405004DD7F9 /* Constants.swift in Sources */,
+				BA7ABDC22C8F944E00E03D8F /* ScaledButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

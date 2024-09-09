@@ -55,6 +55,10 @@ extension BusinessCard {
         set { address_ = newValue }
     }
     
+    var isTrashed: Bool {
+        get { isTrashed_ }
+        set { isTrashed_ = newValue }
+    }
     
     // MARK: Edit & Save Functionality
     func content() -> BusinessCardContent {

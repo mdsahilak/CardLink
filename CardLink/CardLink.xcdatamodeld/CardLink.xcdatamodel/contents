@@ -3,7 +3,7 @@
     <entity name="BusinessCard" representedClassName="BusinessCard" syncable="YES" codeGenerationType="class">
         <attribute name="address_" optional="YES" attributeType="String"/>
         <attribute name="email_" optional="YES" attributeType="String"/>
-        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isTrashed_" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="mobilePhone_" optional="YES" attributeType="String"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
         <attribute name="organisation_" optional="YES" attributeType="String"/>

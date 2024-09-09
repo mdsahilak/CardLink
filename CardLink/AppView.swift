@@ -19,6 +19,11 @@ struct AppView: View {
                 .tabItem {
                     Label("Wireless Share", systemImage: "shared.with.you")
                 }
+            
+            Text("Settings")
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
     }
 }

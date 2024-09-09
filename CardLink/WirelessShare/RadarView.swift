@@ -53,23 +53,11 @@ fileprivate struct RadarIndicator: View {
                 )
                 .padding()
             
-            Circle()
-                .stroke(lineWidth: 1)
-                .foregroundColor(.shadow)
-                .padding()
-                .scaleEffect(0.7)
+            ringe(width: 1, scale: 0.7)
             
-            Circle()
-                .stroke(lineWidth: 2)
-                .foregroundColor(.shadow)
-                .padding()
-                .scaleEffect(0.4)
+            ringe(width: 2, scale: 0.4)
             
-            Circle()
-                .stroke(lineWidth: 3)
-                .foregroundColor(.shadow)
-                .padding()
-                .scaleEffect(0.1)
+            ringe(width: 3, scale: 0.1)
             
             Rectangle()
                 .frame(width: 150*ratio, height: 1.1*ratio, alignment: .center)
@@ -86,6 +74,14 @@ fileprivate struct RadarIndicator: View {
                 isRotating = true
             }
         }
+    }
+    
+    private func ringe(width: CGFloat, scale: CGFloat) -> some View {
+        Circle()
+            .stroke(lineWidth: width)
+            .foregroundColor(.shadow)
+            .padding()
+            .scaleEffect(scale)
     }
 }
 

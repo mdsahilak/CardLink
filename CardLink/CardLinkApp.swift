@@ -20,6 +20,7 @@ struct CardLinkApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()
+                .defaultAppStorage(.group ?? .standard)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

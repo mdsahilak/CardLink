@@ -25,7 +25,7 @@ struct ScannerView: View {
                         Image(systemName: "camera.viewfinder")
                             .font(.appTitle3)
                         
-                        Text("Start Camera Scan")
+                        Text("Start AI Scan")
                     }
                     .padding()
                     .background(content: {

@@ -26,6 +26,7 @@
 		BA7ABDC22C8F944E00E03D8F /* ScaledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */; };
 		BA7ABDC42C8F946D00E03D8F /* TappedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */; };
 		BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */; };
+		BA7ABDC82C909E3C00E03D8F /* UserDefaults+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledButtonStyle.swift; sourceTree = "<group>"; };
 		BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedButtonStyle.swift; sourceTree = "<group>"; };
 		BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivityViewModifier.swift; sourceTree = "<group>"; };
+		BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Group.swift"; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */,
+				BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */,
 				BA7ABDBD2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift */,
 			);
 			path = Extensions;
@@ -280,6 +283,7 @@
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,
 				BA7ABDAE2C88DB1700E03D8F /* CardViewer.swift in Sources */,
 				BA2349522C78F405004DD7F9 /* Constants.swift in Sources */,
+				BA7ABDC82C909E3C00E03D8F /* UserDefaults+Group.swift in Sources */,
 				BA7ABDC22C8F944E00E03D8F /* ScaledButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

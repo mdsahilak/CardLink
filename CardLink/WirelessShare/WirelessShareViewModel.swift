@@ -35,7 +35,7 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     
     override init() {
         let peer = MCPeerID(displayName: UIDevice.current.name)
-        let serviceType = Constants.wirelessShareServiceType
+        let serviceType = Constants.InfoPlist.wirelessShareServiceType
         
         session = MCSession(peer: peer)
         

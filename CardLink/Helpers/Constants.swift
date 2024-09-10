@@ -11,7 +11,7 @@ import UIKit
 enum Constants {
     enum InfoPlist {
         static let wirelessShareServiceType: String = "cardlink-xchge"
-        static let groupIdentifier: String = "com.mdsahilak.CardLink"
+        static let groupIdentifier: String = "group.mdsahilak.CardLink"
     }
     
     enum UserDefaultKeys {

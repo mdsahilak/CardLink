@@ -427,7 +427,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardLink/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CardIn;
+				INFOPLIST_KEY_CFBundleDisplayName = CardLink;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan physical business cards";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To search for nearby devices for exchanging cards";
@@ -467,7 +467,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardLink/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CardIn;
+				INFOPLIST_KEY_CFBundleDisplayName = CardLink;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan physical business cards";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To search for nearby devices for exchanging cards";

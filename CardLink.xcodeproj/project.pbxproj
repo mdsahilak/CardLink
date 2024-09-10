@@ -28,7 +28,6 @@
 		BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */; };
 		BA7ABDC82C909E3C00E03D8F /* UserDefaults+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
-		BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
 		BAC79B422C25FFED00DBD238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */; };
 		BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B432C25FFED00DBD238 /* Persistence.swift */; };
@@ -60,7 +59,6 @@
 		BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Group.swift"; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
-		BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BAC79B432C25FFED00DBD238 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -128,6 +126,23 @@
 			path = OCRScan;
 			sourceTree = "<group>";
 		};
+		BA7ABDC92C90A58600E03D8F /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		BA7ABDCA2C90A59300E03D8F /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */,
+				BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */,
+			);
+			path = ButtonStyles;
+			sourceTree = "<group>";
+		};
 		BAC79B2E2C25FFEC00DBD238 = {
 			isa = PBXGroup;
 			children = (
@@ -158,14 +173,12 @@
 				BA7ABDBB2C8F91DE00E03D8F /* TrashView.swift */,
 				BA23494B2C78F2A5004DD7F9 /* WirelessShare */,
 				BA2349572C875CA7004DD7F9 /* OCRScan */,
-				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
-				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
-				BA7ABDC12C8F944E00E03D8F /* ScaledButtonStyle.swift */,
-				BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */,
-				BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */,
 				BA2349502C78F3FC004DD7F9 /* Helpers */,
 				BA2349442C650D59004DD7F9 /* Extensions */,
-				BAD7CC0F2C88C77C00B28D1F /* Deprecated */,
+				BA7ABDCA2C90A59300E03D8F /* ButtonStyles */,
+				BA7ABDC92C90A58600E03D8F /* ViewModifiers */,
+				BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */,
+				BAC79B432C25FFED00DBD238 /* Persistence.swift */,
 				BAC79B482C25FFED00DBD238 /* CardLink.entitlements */,
 				BAC79B492C25FFED00DBD238 /* Info.plist */,
 				BAC79B452C25FFED00DBD238 /* CardLink.xcdatamodeld */,
@@ -180,14 +193,6 @@
 				BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		BAD7CC0F2C88C77C00B28D1F /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				BAC79B3C2C25FFEC00DBD238 /* ContentView.swift */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +278,6 @@
 				BA7ABDBE2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift in Sources */,
 				BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */,
 				BA7ABDBA2C8F8CA500E03D8F /* ScannerView.swift in Sources */,
-				BAC79B3D2C25FFEC00DBD238 /* ContentView.swift in Sources */,
 				BA7ABDB42C8B6ECE00E03D8F /* BusinsessCardContent.swift in Sources */,
 				BA7ABDC02C8F92C300E03D8F /* HapticController.swift in Sources */,
 				BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */,

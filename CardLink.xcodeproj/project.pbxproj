@@ -27,6 +27,7 @@
 		BA7ABDC42C8F946D00E03D8F /* TappedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */; };
 		BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */; };
 		BA7ABDC82C909E3C00E03D8F /* UserDefaults+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */; };
+		BA7ABDCC2C91D72900E03D8F /* CardBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDCB2C91D72900E03D8F /* CardBackgroundViewModifier.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
 		BAC79B422C25FFED00DBD238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		BA7ABDC32C8F946D00E03D8F /* TappedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedButtonStyle.swift; sourceTree = "<group>"; };
 		BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivityViewModifier.swift; sourceTree = "<group>"; };
 		BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Group.swift"; sourceTree = "<group>"; };
+		BA7ABDCB2C91D72900E03D8F /* CardBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackgroundViewModifier.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */,
+				BA7ABDCB2C91D72900E03D8F /* CardBackgroundViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */,
 				BA7ABDBA2C8F8CA500E03D8F /* ScannerView.swift in Sources */,
 				BA7ABDB42C8B6ECE00E03D8F /* BusinsessCardContent.swift in Sources */,
+				BA7ABDCC2C91D72900E03D8F /* CardBackgroundViewModifier.swift in Sources */,
 				BA7ABDC02C8F92C300E03D8F /* HapticController.swift in Sources */,
 				BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */,
 				BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */,
@@ -427,7 +431,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardLink/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CardLink;
+				INFOPLIST_KEY_CFBundleDisplayName = CardIn;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan physical business cards";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To search for nearby devices for exchanging cards";
@@ -467,7 +471,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardLink/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CardLink;
+				INFOPLIST_KEY_CFBundleDisplayName = CardIn;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan physical business cards";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To search for nearby devices for exchanging cards";

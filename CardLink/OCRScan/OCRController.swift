@@ -1,5 +1,5 @@
 //
-//  DocumentCameraView.swift
+//  OCRController.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 02/09/2024.
@@ -9,7 +9,7 @@ import SwiftUI
 import VisionKit
 import Vision
 
-struct DocumentCameraView: UIViewControllerRepresentable {
+struct OCRController: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
     
@@ -30,9 +30,9 @@ struct DocumentCameraView: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
-        var parent: DocumentCameraView
+        var parent: OCRController
 
-        init(parent: DocumentCameraView) {
+        init(parent: OCRController) {
             self.parent = parent
         }
 

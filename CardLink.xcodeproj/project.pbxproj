@@ -14,7 +14,7 @@
 		BA23494D2C78F31D004DD7F9 /* WirelessShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23494C2C78F31D004DD7F9 /* WirelessShareView.swift */; };
 		BA23494F2C78F32C004DD7F9 /* WirelessShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23494E2C78F32C004DD7F9 /* WirelessShareViewModel.swift */; };
 		BA2349522C78F405004DD7F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349512C78F405004DD7F9 /* Constants.swift */; };
-		BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */; };
+		BA2349562C8630B3004DD7F9 /* OCRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349552C8630B3004DD7F9 /* OCRController.swift */; };
 		BA7ABDAE2C88DB1700E03D8F /* CardViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */; };
 		BA7ABDB22C8A0DF100E03D8F /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDB12C8A0DF100E03D8F /* AppView.swift */; };
 		BA7ABDB42C8B6ECE00E03D8F /* BusinsessCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */; };
@@ -45,7 +45,7 @@
 		BA23494C2C78F31D004DD7F9 /* WirelessShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirelessShareView.swift; sourceTree = "<group>"; };
 		BA23494E2C78F32C004DD7F9 /* WirelessShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirelessShareViewModel.swift; sourceTree = "<group>"; };
 		BA2349512C78F405004DD7F9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
+		BA2349552C8630B3004DD7F9 /* OCRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRController.swift; sourceTree = "<group>"; };
 		BA7ABDAD2C88DB1700E03D8F /* CardViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewer.swift; sourceTree = "<group>"; };
 		BA7ABDB12C8A0DF100E03D8F /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinsessCardContent.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				BA7ABDB92C8F8CA500E03D8F /* ScannerView.swift */,
-				BA2349552C8630B3004DD7F9 /* DocumentCameraView.swift */,
+				BA2349552C8630B3004DD7F9 /* OCRController.swift */,
 			);
 			path = OCRScan;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 				BA7ABDCC2C91D72900E03D8F /* CardBackgroundViewModifier.swift in Sources */,
 				BA7ABDC02C8F92C300E03D8F /* HapticController.swift in Sources */,
 				BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */,
-				BA2349562C8630B3004DD7F9 /* DocumentCameraView.swift in Sources */,
+				BA2349562C8630B3004DD7F9 /* OCRController.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
 				BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */,
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,

@@ -62,7 +62,7 @@ struct ScannerView: View {
             
             recognizedText = ""
         }, content: {
-            DocumentCameraView(recognizedText: $recognizedText)
+            OCRController(recognizedText: $recognizedText)
                 .ignoresSafeArea(edges: .all)
                 .interactiveDismissDisabled()
         })

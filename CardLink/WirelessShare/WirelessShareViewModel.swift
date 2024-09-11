@@ -1,5 +1,5 @@
 //
-//  NearbyExchangeViewModel.swift
+//  WirelessShareViewModel.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 23/08/2024.
@@ -10,37 +10,36 @@ import MultipeerConnectivity
 import Combine
 
 @MainActor
-final class NearbyExchangeViewModel: NSObject, ObservableObject {
-    private let advertiser: MCNearbyServiceAdvertiser
+final class WirelessShareViewModel: NSObject, ObservableObject {
     private let session: MCSession
-    private let serviceType = "nearby-devices"
+    private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
     
-    @Published var peers: [PeerDevice] = []
+    @Published var peers: [MCPeerID] = []
     
-    @Published var permissionRequest: PermitionRequest?
-    
-    @Published var connectedPeer: PeerDevice? = nil
+    @Published var connectedPeer: MCPeerID? = nil
     
     @Published var messages: [String] = []
+    
+    @Published var permissionRequest: PermissionRequest?
+    @Published var acceptedContent: BusinessCardContent? = nil
+    
     func send(string: String) {
-        if let data = string.data(using: .utf8), let peerID = connectedPeer?.peerId{
-            try? session.send(data, toPeers: [peerID], with: .reliable)
+        if let data = string.data(using: .utf8), let peer = connectedPeer {
+            try? session.send(data, toPeers: [peer], with: .reliable)
             
         } else {
-            print("Error sendind data")
+            print("Error sending data")
         }
     }
     
     override init() {
         let peer = MCPeerID(displayName: UIDevice.current.name)
+        let serviceType = Constants.InfoPlist.wirelessShareServiceType
+        
         session = MCSession(peer: peer)
         
-        advertiser = MCNearbyServiceAdvertiser(
-            peer: peer,
-            discoveryInfo: nil,
-            serviceType: serviceType
-        )
+        advertiser = MCNearbyServiceAdvertiser(peer: peer, discoveryInfo: nil, serviceType: serviceType)
         
         browser = MCNearbyServiceBrowser(peer: peer, serviceType: serviceType)
         
@@ -61,35 +60,37 @@ final class NearbyExchangeViewModel: NSObject, ObservableObject {
         browser.stopBrowsingForPeers()
     }
     
-    func connectTo(_ peer: PeerDevice) {
-        if session.connectedPeers.contains(peer.peerId) {
-            connectedPeer = peer
-        } else {
-            browser.invitePeer(peer.peerId, to: session, withContext: nil, timeout: 60)
-        }
+    func connectTo(_ peer: MCPeerID, content: BusinessCardContent) {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(content)
+        
+        browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
+        
+//        if session.connectedPeers.contains(peer) {
+//            connectedPeer = peer
+//        } else {
+//            let card = BusinessCardContent(name: "Sahil Ak", role: "Engineer", organisation: "TimeWave")
+//            
+//            browser.invitePeer(peer, to: session, withContext: nil, timeout: 60)
+//        }
     }
 }
 
 
-extension NearbyExchangeViewModel: MCNearbyServiceBrowserDelegate {
-    struct PeerDevice: Identifiable, Hashable {
-        let id = UUID()
-        let peerId: MCPeerID
+extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        if !peers.contains(where: { $0 == peerID }) { peers.append(peerID) }
     }
     
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        peers.append(PeerDevice(peerId: peerID))
-    }
-
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        peers.removeAll(where: { $0.peerId == peerID })
+        peers.removeAll(where: { $0 == peerID })
     }
 }
 
-
-extension NearbyExchangeViewModel: MCNearbyServiceAdvertiserDelegate {
-    struct PermitionRequest: Identifiable {
-        let id = UUID()
+extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
+    struct PermissionRequest: Identifiable {
+        var id: MCPeerID { peerId }
+        
         let peerId: MCPeerID
         let onRequest: (Bool) -> Void
     }
@@ -100,16 +101,32 @@ extension NearbyExchangeViewModel: MCNearbyServiceAdvertiserDelegate {
         withContext context: Data?,
         invitationHandler: @escaping (Bool, MCSession?) -> Void
     ) {
-        permissionRequest = PermitionRequest(
+        permissionRequest = PermissionRequest(
             peerId: peerID,
             onRequest: { [weak self] permission in
-                invitationHandler(permission, permission ? self?.session : nil)
+                guard let self else { return }
+                
+                if permission {
+                    let decoder = JSONDecoder()
+                    
+                    if let data = context, let content = try? decoder.decode(BusinessCardContent.self, from: data) {
+                        DispatchQueue.main.async {
+                            self.acceptedContent = content
+                        }
+                    } else {
+                        print("Invite decode error")
+                    }
+                }
+                
+                invitationHandler(false, session)
             }
         )
     }
 }
 
-extension NearbyExchangeViewModel: MCSessionDelegate {
+extension MCPeerID: Identifiable {  }
+
+extension WirelessShareViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         return
     }

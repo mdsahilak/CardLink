@@ -20,9 +20,18 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "CardLink")
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
+        // https://developer.apple.com/documentation/coredata/consuming_relevant_store_changes
+        let description = container.persistentStoreDescriptions.first
+        description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        
+        let remoteChangeKey = "NSPersistentStoreRemoteChangeNotificationOptionKey"
+        description?.setOption(true as NSNumber, forKey: remoteChangeKey)
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -39,6 +48,7 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }

@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants {
-    static let nearbyExchangeIdentifier: String = "cardlink-exchange"
+    enum InfoPlist {
+        static let wirelessShareServiceType: String = "cardlink-xchge"
+        static let groupIdentifier: String = "group.mdsahilak.CardLink"
+    }
+    
+    enum UserDefaultKeys {
+        static let deviceName: String = "userDeviceName"
+    }
+    
 }

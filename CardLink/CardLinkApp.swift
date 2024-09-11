@@ -13,13 +13,14 @@ struct CardLinkApp: App {
     
     init() {
         // Appearance Overrides
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemGray
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemIndigo
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     var body: some Scene {
         WindowGroup {
             AppView()
+                .defaultAppStorage(.group ?? .standard)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

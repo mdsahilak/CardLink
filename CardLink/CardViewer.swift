@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardViewer: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var context
+    
     @ObservedObject var card: BusinessCard
     
     @State private var showEditor: Bool = false
@@ -88,9 +90,13 @@ struct CardViewer: View {
                     })
                 }
             }
-            .sheet(isPresented: $showEditor, content: {
-                CardEditorView(card: card)
-            })
+            .sheet(isPresented: $showEditor) {
+                CardEditorView(content: card.content()) { editedCardContent in
+                    card.update(with: editedCardContent)
+                    
+                    try? context.save()
+                }
+            }
         }
     }
     

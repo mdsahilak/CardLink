@@ -55,8 +55,25 @@ extension BusinessCard {
         set { address_ = newValue }
     }
     
+    var isTrashed: Bool {
+        get { isTrashed_ }
+        set { isTrashed_ = newValue }
+    }
     
-    // MARK:
+    // MARK: Edit & Save Functionality
+    func content() -> BusinessCardContent {
+        BusinessCardContent(
+            name: name, 
+            role: role,
+            organisation: organisation,
+            email: email,
+            telePhone: telePhone,
+            mobilePhone: mobilePhone,
+            website: website,
+            address: address
+        )
+    }
+    
     func update(with content: BusinessCardContent) {
         name = content.name
         role = content.role

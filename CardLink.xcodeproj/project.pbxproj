@@ -33,7 +33,7 @@
 		BAC79B422C25FFED00DBD238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */; };
 		BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B432C25FFED00DBD238 /* Persistence.swift */; };
 		BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B452C25FFED00DBD238 /* CardLink.xcdatamodeld */; };
-		BAD7CC0C2C878E2900B28D1F /* BusinessCard+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */; };
+		BAD7CC0C2C878E2900B28D1F /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0B2C878E2900B28D1F /* BusinessCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,7 @@
 		BAC79B462C25FFED00DBD238 /* CardLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardLink.xcdatamodel; sourceTree = "<group>"; };
 		BAC79B482C25FFED00DBD238 /* CardLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardLink.entitlements; sourceTree = "<group>"; };
 		BAC79B492C25FFED00DBD238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusinessCard+Helpers.swift"; sourceTree = "<group>"; };
+		BAD7CC0B2C878E2900B28D1F /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		BA23493C2C57F7B7004DD7F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BAD7CC0B2C878E2900B28D1F /* BusinessCard+Helpers.swift */,
+				BAD7CC0B2C878E2900B28D1F /* BusinessCard.swift */,
 				BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */,
 			);
 			path = Models;
@@ -269,7 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
-				BAD7CC0C2C878E2900B28D1F /* BusinessCard+Helpers.swift in Sources */,
+				BAD7CC0C2C878E2900B28D1F /* BusinessCard.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
 				BA23494F2C78F32C004DD7F9 /* WirelessShareViewModel.swift in Sources */,
 				BA7ABDB22C8A0DF100E03D8F /* AppView.swift in Sources */,

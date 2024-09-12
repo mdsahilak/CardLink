@@ -60,47 +60,5 @@ extension BusinessCard {
         set { isTrashed_ = newValue }
     }
     
-    // MARK: Edit & Save Functionality
-    func content() -> BusinessCardContent {
-        BusinessCardContent(
-            name: name, 
-            role: role,
-            organisation: organisation,
-            email: email,
-            telePhone: telePhone,
-            mobilePhone: mobilePhone,
-            website: website,
-            address: address
-        )
-    }
-    
-    func update(with content: BusinessCardContent) {
-        name = content.name
-        role = content.role
-        organisation = content.organisation
-        
-        email = content.email
-        
-        telePhone = content.telePhone
-        mobilePhone = content.mobilePhone
-        
-        website = content.website
-        
-        address = content.address
-    }
-    
 }
 
-//MARK: - Mock -
-extension BusinessCard {
-    /// Sample Card for use in SwiftUI Previews.
-    static let previewCard: BusinessCard = {
-        let card = BusinessCard(context: PersistenceController.preview.container.viewContext)
-        
-        card.organisation = "Apple, Inc"
-        card.name = "John Appleseed"
-        card.role = "Chief Demo Officer"
-        
-        return card
-    }()
-}

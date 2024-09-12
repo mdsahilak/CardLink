@@ -10,7 +10,7 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
-            ScannerView()
+            ScannerView(vm: ScannerViewModel())
                 .tabItem {
                     Label("AI Scan", systemImage: "camera.aperture")
                 }

@@ -7,6 +7,7 @@
 
 import CoreData
 
+// Handler for managing the Core-Data Store
 struct PersistenceController {
     static let shared = PersistenceController()
 

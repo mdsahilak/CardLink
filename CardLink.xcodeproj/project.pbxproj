@@ -28,6 +28,9 @@
 		BA7ABDC62C8F94A200E03D8F /* InteractivityViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */; };
 		BA7ABDC82C909E3C00E03D8F /* UserDefaults+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */; };
 		BA7ABDCC2C91D72900E03D8F /* CardBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDCB2C91D72900E03D8F /* CardBackgroundViewModifier.swift */; };
+		BA7ABDCE2C9294A000E03D8F /* MCPeer+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDCD2C9294A000E03D8F /* MCPeer+Identifiable.swift */; };
+		BA7ABDD62C9296A500E03D8F /* PermissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDD52C9296A500E03D8F /* PermissionRequest.swift */; };
+		BA7ABDD82C92977D00E03D8F /* RadarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7ABDD72C92977D00E03D8F /* RadarIndicatorView.swift */; };
 		BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */; };
 		BAC79B3F2C25FFED00DBD238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */; };
 		BAC79B422C25FFED00DBD238 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC79B412C25FFED00DBD238 /* Preview Assets.xcassets */; };
@@ -59,6 +62,9 @@
 		BA7ABDC52C8F94A200E03D8F /* InteractivityViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivityViewModifier.swift; sourceTree = "<group>"; };
 		BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Group.swift"; sourceTree = "<group>"; };
 		BA7ABDCB2C91D72900E03D8F /* CardBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackgroundViewModifier.swift; sourceTree = "<group>"; };
+		BA7ABDCD2C9294A000E03D8F /* MCPeer+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MCPeer+Identifiable.swift"; sourceTree = "<group>"; };
+		BA7ABDD52C9296A500E03D8F /* PermissionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequest.swift; sourceTree = "<group>"; };
+		BA7ABDD72C92977D00E03D8F /* RadarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarIndicatorView.swift; sourceTree = "<group>"; };
 		BAC79B372C25FFEC00DBD238 /* CardLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC79B3A2C25FFEC00DBD238 /* CardLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkApp.swift; sourceTree = "<group>"; };
 		BAC79B3E2C25FFED00DBD238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			children = (
 				BAD7CC0B2C878E2900B28D1F /* BusinessCard.swift */,
 				BA7ABDB32C8B6ECE00E03D8F /* BusinsessCardContent.swift */,
+				BA7ABDD52C9296A500E03D8F /* PermissionRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 				BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */,
 				BA7ABDC72C909E3C00E03D8F /* UserDefaults+Group.swift */,
 				BA7ABDBD2C8F921B00E03D8F /* NSManagedObjectContext+ExecuteAndMergeChanges.swift */,
+				BA7ABDCD2C9294A000E03D8F /* MCPeer+Identifiable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -106,6 +114,7 @@
 				BA23494E2C78F32C004DD7F9 /* WirelessShareViewModel.swift */,
 				BA23494C2C78F31D004DD7F9 /* WirelessShareView.swift */,
 				BA7ABDB52C8B727A00E03D8F /* RadarView.swift */,
+				BA7ABDD72C92977D00E03D8F /* RadarIndicatorView.swift */,
 			);
 			path = WirelessShare;
 			sourceTree = "<group>";
@@ -268,7 +277,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7ABDD62C9296A500E03D8F /* PermissionRequest.swift in Sources */,
 				BAC79B442C25FFED00DBD238 /* Persistence.swift in Sources */,
+				BA7ABDCE2C9294A000E03D8F /* MCPeer+Identifiable.swift in Sources */,
 				BAD7CC0C2C878E2900B28D1F /* BusinessCard.swift in Sources */,
 				BAC79B472C25FFED00DBD238 /* CardLink.xcdatamodeld in Sources */,
 				BA23494F2C78F32C004DD7F9 /* WirelessShareViewModel.swift in Sources */,
@@ -287,6 +298,7 @@
 				BA7ABDBC2C8F91DE00E03D8F /* TrashView.swift in Sources */,
 				BA2349562C8630B3004DD7F9 /* OCRController.swift in Sources */,
 				BAC79B3B2C25FFEC00DBD238 /* CardLinkApp.swift in Sources */,
+				BA7ABDD82C92977D00E03D8F /* RadarIndicatorView.swift in Sources */,
 				BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */,
 				BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */,
 				BA7ABDAE2C88DB1700E03D8F /* CardDrawerViewer.swift in Sources */,

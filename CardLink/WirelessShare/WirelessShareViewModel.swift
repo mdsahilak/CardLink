@@ -65,18 +65,41 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
         let data = try! encoder.encode(content)
         
         browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
-        
-//        if session.connectedPeers.contains(peer) {
-//            connectedPeer = peer
-//        } else {
-//            let card = BusinessCardContent(name: "Sahil Ak", role: "Engineer", organisation: "TimeWave")
-//            
-//            browser.invitePeer(peer, to: session, withContext: nil, timeout: 60)
-//        }
     }
 }
 
 
+// MARK: - MCSessionDelegate Conformance -
+extension WirelessShareViewModel: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        return
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        return
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        return
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        return
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        if let message = String(data: data, encoding: .utf8) {
+            DispatchQueue.main.async {
+                self.messages.append(message)
+            }
+        } else {
+            print("Unable to decode message")
+        }
+    }
+}
+
+
+// MARK: - MCNearbyServiceBrowserDelegate Conformance -
 extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         if !peers.contains(where: { $0 == peerID }) { peers.append(peerID) }
@@ -87,6 +110,8 @@ extension WirelessShareViewModel: MCNearbyServiceBrowserDelegate {
     }
 }
 
+
+// MARK: - MCNearbyServiceAdvertiserDelegate Conformance -
 extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
     struct PermissionRequest: Identifiable {
         var id: MCPeerID { peerId }
@@ -124,32 +149,3 @@ extension WirelessShareViewModel: MCNearbyServiceAdvertiserDelegate {
     }
 }
 
-extension MCPeerID: Identifiable {  }
-
-extension WirelessShareViewModel: MCSessionDelegate {
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        return
-    }
-    
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        return
-    }
-    
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        return
-    }
-    
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        return
-    }
-    
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        if let message = String(data: data, encoding: .utf8) {
-            DispatchQueue.main.async {
-                self.messages.append(message)
-            }
-        } else {
-            print("Unable to decode message")
-        }
-    }
-}

@@ -147,6 +147,3 @@ struct CardPickerView: View {
     }
 }
 
-#Preview {
-    WirelessShareView()
-}

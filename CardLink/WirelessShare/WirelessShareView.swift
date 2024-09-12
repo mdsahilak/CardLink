@@ -68,10 +68,10 @@ struct WirelessShareView: View {
                     }
                 }
                 .onAppear {
-                    vm.startBrowsing()
+                    vm.start()
                 }
                 .onDisappear {
-                    vm.finishBrowsing()
+                    vm.stop()
                 }
                 .alert(item: $vm.permissionRequest, content: { request in
                     Alert(

@@ -32,11 +32,11 @@ struct RadarIndicatorView: View {
                 )
                 .padding()
             
-            ringe(width: 1, scale: 0.7)
+            ring(width: 1, scale: 0.7)
             
-            ringe(width: 2, scale: 0.4)
+            ring(width: 2, scale: 0.4)
             
-            ringe(width: 3, scale: 0.1)
+            ring(width: 3, scale: 0.1)
             
             Rectangle()
                 .frame(width: 150*ratio, height: 1.1*ratio, alignment: .center)
@@ -55,7 +55,7 @@ struct RadarIndicatorView: View {
         }
     }
     
-    private func ringe(width: CGFloat, scale: CGFloat) -> some View {
+    private func ring(width: CGFloat, scale: CGFloat) -> some View {
         Circle()
             .stroke(lineWidth: width)
             .foregroundColor(.shadow)

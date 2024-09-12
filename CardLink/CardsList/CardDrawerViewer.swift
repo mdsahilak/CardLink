@@ -100,12 +100,4 @@ struct CardDrawerViewer: View {
         }
     }
     
-    private var IconView: some View {
-        Image("memoji_light")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 70, height: 70, alignment: .center)
-            .clipShape(Circle())
-            .font(.appTitle1)
-    }
 }

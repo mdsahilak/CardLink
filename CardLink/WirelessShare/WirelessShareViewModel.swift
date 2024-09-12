@@ -24,16 +24,8 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
     @Published var permissionRequest: PermissionRequest?
     @Published var acceptedContent: BusinessCardContent? = nil
     
-    func send(string: String) {
-        if let data = string.data(using: .utf8), let peer = connectedPeer {
-            try? session.send(data, toPeers: [peer], with: .reliable)
-            
-        } else {
-            print("Error sending data")
-        }
-    }
-    
     override init() {
+        // Multi-Peer Connectivity Setup
         let peer = MCPeerID(displayName: UIDevice.current.name)
         let serviceType = Constants.InfoPlist.wirelessShareServiceType
         
@@ -45,26 +37,38 @@ final class WirelessShareViewModel: NSObject, ObservableObject {
         
         super.init()
         
+        // Assign delegates
         browser.delegate = self
         advertiser.delegate = self
         session.delegate = self
     }
     
-    func startBrowsing() {
+    /// Start browsing for peers and advertising self as a peer in the Peer-To-Peer Network
+    func start() {
         advertiser.startAdvertisingPeer()
         browser.startBrowsingForPeers()
     }
-        
-    func finishBrowsing() {
+    
+    /// Stop browsing for peers and advertising self as a peer  in the Peer-To-Peer Network
+    func stop() {
         advertiser.stopAdvertisingPeer()
         browser.stopBrowsingForPeers()
     }
     
+    /// Connect to a specific peer that is available to connect
+    /// - Parameters:
+    ///   - peer: The peer to connect to
+    ///   - content: The card content to be sent to the peer
     func connectTo(_ peer: MCPeerID, content: BusinessCardContent) {
-        let encoder = JSONEncoder()
-        let data = try! encoder.encode(content)
-        
-        browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
+        do {
+            let encoder = JSONEncoder()
+            
+            let data = try encoder.encode(content)
+            
+            browser.invitePeer(peer, to: session, withContext: data, timeout: 60)
+        } catch {
+            print(error)
+        }
     }
 }
 

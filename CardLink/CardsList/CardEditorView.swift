@@ -94,6 +94,7 @@ struct CardEditorView: View {
         }
     }
     
+    // Type representing the title for the editor
     enum EditorType: String {
         case edit
         case create

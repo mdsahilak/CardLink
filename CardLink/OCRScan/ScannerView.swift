@@ -55,7 +55,7 @@ struct ScannerView: View {
                 if let content = try? parseScannedText(recognizedText) {
                     showEditor = content
                 } else {
-                    // TODO: Show an error - "Error parsing scanned card. Please try again."
+                    showEditor = BusinessCardContent()
                     print("Could not parse text!")
                 }
             }

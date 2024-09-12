@@ -25,4 +25,9 @@ struct BusinessCardContent: Codable, Identifiable, Equatable {
     var website: String = ""
     
     var address: String = ""
+    
+    /// Check to see is the name, role or organisation fields are empty
+    var isProfileEmpty: Bool {
+        name.isEmpty || role.isEmpty || organisation.isEmpty
+    }
 }

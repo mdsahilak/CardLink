@@ -17,6 +17,8 @@ struct CardEditorView: View {
     
     var saveAction: (BusinessCardContent) -> Void
     
+    @State private var showDiscardAlert: Bool = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -67,10 +69,18 @@ struct CardEditorView: View {
             }
             .scrollIndicators(.hidden)
             .navigationBarTitleDisplayMode(.inline)
+            .alert("Discard Changes ?", isPresented: $showDiscardAlert, actions: {
+                
+                Button("Discard", role: .destructive) { dismiss() }
+                
+                Button("Cancel", role: .cancel) {  }
+            }, message: {
+                Text("Are you sure? This cannot be undone.")
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-                        dismiss()
+                        showDiscardAlert.toggle()
                     }, label: {
                         Label("Dismiss", systemImage: "xmark")
                     })
@@ -89,6 +99,8 @@ struct CardEditorView: View {
                     }, label: {
                         Label("Save", systemImage: "checkmark")
                     })
+                    .isInteractive(!content.isProfileEmpty)
+                    
                 }
             }
         }

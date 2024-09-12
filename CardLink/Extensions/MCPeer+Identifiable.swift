@@ -8,4 +8,5 @@
 import Foundation
 import MultipeerConnectivity
 
+// Make MCPeerID Identifiable so that the model can be used in SwifTUI ForEach loops
 extension MCPeerID: Identifiable {  }

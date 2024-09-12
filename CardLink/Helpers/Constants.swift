@@ -10,7 +10,10 @@ import UIKit
 
 enum Constants {
     enum InfoPlist {
+        /// Multi-Peer Connectivity Identifier
         static let wirelessShareServiceType: String = "cardlink-xchge"
+        
+        /// Identifier for App Groups functionality
         static let groupIdentifier: String = "group.mdsahilak.CardLink"
     }
 }

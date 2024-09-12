@@ -14,6 +14,9 @@ final class ScannerViewModel: ObservableObject {
     
     @Published var recognizedText: String = ""
     
+    /// Process the scanned text and extract information relevant for a business card
+    /// - Parameter text: The text to be processed and parsed as content
+    /// - Returns: The relevant business card content from the input text
     func parseScannedText(_ text: String) throws -> BusinessCardContent {
         var contents = BusinessCardContent()
         
@@ -79,16 +82,20 @@ final class ScannerViewModel: ObservableObject {
         return contents
     }
     
+    /// Operations to be performed when the camera is dismissed
     func cameraDismissed() {
         if !recognizedText.isEmpty {
-            if let content = try? parseScannedText(recognizedText) {
+            do {
+                let content = try parseScannedText(recognizedText)
                 showEditor = content
-            } else {
+            } catch {
                 showEditor = BusinessCardContent()
-                print("Could not parse text!")
+                
+                print("Could not parse text! Error: \(error)")
             }
         }
         
-        recognizedText = ""
+        self.recognizedText = ""
     }
+    
 }

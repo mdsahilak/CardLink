@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Adds a background to the button on tap
 struct TappedButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

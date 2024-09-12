@@ -9,6 +9,7 @@ import SwiftUI
 import VisionKit
 import Vision
 
+// SwiftUI/UIKit bridge for the OCR Camera Scanner
 struct OCRController: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
@@ -46,6 +47,7 @@ struct OCRController: UIViewControllerRepresentable {
                 
                 for observation in observations {
                     guard let bestCandidate = observation.topCandidates(1).first else { continue }
+                    
                     scannedTexts.append(bestCandidate.string)
                 }
                 

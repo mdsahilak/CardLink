@@ -8,7 +8,7 @@
 import Foundation
 
 // Helper model for saving draft data while editing a BusinessCard
-struct BusinessCardContent: Codable, Identifiable {
+struct BusinessCardContent: Codable, Identifiable, Equatable {
     var id: String { "\(email) \(telePhone) \(mobilePhone)" }
     
     var name: String = ""

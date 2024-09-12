@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA1433C12C92A831005CA3D0 /* CardLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1433C02C92A831005CA3D0 /* CardLinkTests.swift */; };
 		BA2349402C616A2A004DD7F9 /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23493F2C616A2A004DD7F9 /* CardsListView.swift */; };
 		BA2349422C616E6E004DD7F9 /* BusinessCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */; };
 		BA2349482C650E43004DD7F9 /* Font+AvenirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2349472C650E43004DD7F9 /* Font+AvenirNext.swift */; };
@@ -42,7 +43,19 @@
 		BAD7CC0C2C878E2900B28D1F /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7CC0B2C878E2900B28D1F /* BusinessCard.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BA1433C22C92A831005CA3D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAC79B2F2C25FFEC00DBD238 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BAC79B362C25FFEC00DBD238;
+			remoteInfo = CardLink;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		BA1433BE2C92A831005CA3D0 /* CardLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA1433C02C92A831005CA3D0 /* CardLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLinkTests.swift; sourceTree = "<group>"; };
 		BA23493F2C616A2A004DD7F9 /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
 		BA2349412C616E6E004DD7F9 /* BusinessCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardView.swift; sourceTree = "<group>"; };
 		BA2349432C6170B8004DD7F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -83,6 +96,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BA1433BB2C92A831005CA3D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAC79B342C25FFEC00DBD238 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA1433BF2C92A831005CA3D0 /* CardLinkTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA1433C02C92A831005CA3D0 /* CardLinkTests.swift */,
+			);
+			path = CardLinkTests;
+			sourceTree = "<group>";
+		};
 		BA23493C2C57F7B7004DD7F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +209,7 @@
 			children = (
 				BA2349432C6170B8004DD7F9 /* README.md */,
 				BAC79B392C25FFEC00DBD238 /* CardLink */,
+				BA1433BF2C92A831005CA3D0 /* CardLinkTests */,
 				BAC79B382C25FFEC00DBD238 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				BAC79B372C25FFEC00DBD238 /* CardLink.app */,
+				BA1433BE2C92A831005CA3D0 /* CardLinkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +257,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BA1433BD2C92A831005CA3D0 /* CardLinkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA1433C62C92A831005CA3D0 /* Build configuration list for PBXNativeTarget "CardLinkTests" */;
+			buildPhases = (
+				BA1433BA2C92A831005CA3D0 /* Sources */,
+				BA1433BB2C92A831005CA3D0 /* Frameworks */,
+				BA1433BC2C92A831005CA3D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA1433C32C92A831005CA3D0 /* PBXTargetDependency */,
+			);
+			name = CardLinkTests;
+			productName = CardLinkTests;
+			productReference = BA1433BE2C92A831005CA3D0 /* CardLinkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BAC79B362C25FFEC00DBD238 /* CardLink */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAC79B4C2C25FFED00DBD238 /* Build configuration list for PBXNativeTarget "CardLink" */;
@@ -251,9 +299,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					BA1433BD2C92A831005CA3D0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = BAC79B362C25FFEC00DBD238;
+					};
 					BAC79B362C25FFEC00DBD238 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -273,11 +325,19 @@
 			projectRoot = "";
 			targets = (
 				BAC79B362C25FFEC00DBD238 /* CardLink */,
+				BA1433BD2C92A831005CA3D0 /* CardLinkTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BA1433BC2C92A831005CA3D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAC79B352C25FFEC00DBD238 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,6 +350,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BA1433BA2C92A831005CA3D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA1433C12C92A831005CA3D0 /* CardLinkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAC79B332C25FFEC00DBD238 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,7 +398,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BA1433C32C92A831005CA3D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BAC79B362C25FFEC00DBD238 /* CardLink */;
+			targetProxy = BA1433C22C92A831005CA3D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		BA1433C42C92A831005CA3D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YX56X85BZA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdsahilak.CardLinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardLink.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CardLink";
+			};
+			name = Debug;
+		};
+		BA1433C52C92A831005CA3D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YX56X85BZA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdsahilak.CardLinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardLink.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CardLink";
+			};
+			name = Release;
+		};
 		BAC79B4A2C25FFED00DBD238 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -533,6 +647,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BA1433C62C92A831005CA3D0 /* Build configuration list for PBXNativeTarget "CardLinkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA1433C42C92A831005CA3D0 /* Debug */,
+				BA1433C52C92A831005CA3D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BAC79B322C25FFEC00DBD238 /* Build configuration list for PBXProject "CardLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

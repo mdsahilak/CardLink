@@ -7,8 +7,9 @@
 
 import Foundation
 
+// Representation Card for use in SwiftUI Previews and Testing
 extension BusinessCard {
-    /// Sample Card for use in SwiftUI Previews and Testing
+    /// A mock card for testing
     static let mock: BusinessCard = {
         let card = BusinessCard(context: PersistenceController.preview.container.viewContext)
         

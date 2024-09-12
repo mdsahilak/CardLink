@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// Represents a SwiftUI compatible bride to the attributes for the auto-generated Core-Data class
 extension BusinessCard {
     var timestamp: Date {
         get { timestamp_ ?? Date() }

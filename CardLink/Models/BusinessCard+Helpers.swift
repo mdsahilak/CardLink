@@ -7,8 +7,11 @@
 
 import Foundation
 
-// MARK: Edit & Save Functionality
+// Helpers for editing & saving functionality
 extension BusinessCard {
+    
+    /// Get the contents of the core data model as a draft for editing.
+    /// - Returns: A relevant details of the card as a Business Card Content
     func content() -> BusinessCardContent {
         BusinessCardContent(
             name: name,
@@ -22,6 +25,9 @@ extension BusinessCard {
         )
     }
     
+    
+    /// Update the core data model class with the provided content information
+    /// - Parameter content: The content to be updated on the Business Card
     func update(with content: BusinessCardContent) {
         name = content.name
         role = content.role

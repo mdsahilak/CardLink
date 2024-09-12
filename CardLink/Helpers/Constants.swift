@@ -13,9 +13,4 @@ enum Constants {
         static let wirelessShareServiceType: String = "cardlink-xchge"
         static let groupIdentifier: String = "group.mdsahilak.CardLink"
     }
-    
-    enum UserDefaultKeys {
-        static let deviceName: String = "userDeviceName"
-    }
-    
 }

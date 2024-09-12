@@ -78,17 +78,12 @@ struct ScannerView: View {
         }
     }
     
-    
-    
     func parseScannedText(_ text: String) throws -> BusinessCardContent {
         var contents = BusinessCardContent()
         
-        print(text)
-        
-        // Any line could contain the name on the business card.
         var textComponents = text.components(separatedBy: .newlines)
         
-        // Create an NSDataDetector to parse the text, searching for various fields of interest.
+        // Create an NSDataDetector to parse the text.
         let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
         let matches = detector.matches(in: text, options: .init(), range: NSRange(location: 0, length: text.count))
         
@@ -97,7 +92,6 @@ struct ScannerView: View {
             let matchEndIdx = text.index(text.startIndex, offsetBy: match.range.location + match.range.length)
             let matchedString = String(text[matchStartIdx..<matchEndIdx])
             
-            // This line has been matched so it doesn't contain the name on the business card.
             while !textComponents.isEmpty && (matchedString.contains(textComponents[0]) || textComponents[0].contains(matchedString)) {
                 textComponents.remove(at: 0)
             }
@@ -148,8 +142,4 @@ struct ScannerView: View {
         
         return contents
     }
-}
-
-#Preview {
-    ScannerView()
 }

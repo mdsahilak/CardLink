@@ -21,9 +21,7 @@ struct OCRController: UIViewControllerRepresentable {
         return viewController
     }
 
-    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
-        
-    }
+    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {  }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)

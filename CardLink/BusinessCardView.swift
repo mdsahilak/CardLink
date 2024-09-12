@@ -42,11 +42,3 @@ struct BusinessCardView: View {
     }
 }
 
-//#Preview {
-//    Form {
-//        Section {
-//            BusinessCardView(card: .mock)
-//                .padding()
-//        }
-//    }
-//}

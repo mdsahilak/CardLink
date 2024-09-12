@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  CardsListView.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 05/08/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct CardsListView: View {
     @Environment(\.managedObjectContext) var context
     
     @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], predicate: NSPredicate(format: "isTrashed_ == %@", NSNumber(value: false)), animation: .default)
@@ -55,7 +55,7 @@ struct HomeView: View {
             .foregroundStyle(.primaryText)
             .navigationBarTitleDisplayMode(.inline)
             .sheet(item: $showViewer) { cardToView in
-                CardViewer(card: cardToView)
+                CardDrawerViewer(card: cardToView)
                     .presentationDetents([.fraction(0.5)])
             }
             .sheet(item: $showEditorForNewCardContent) { content in
@@ -122,10 +122,5 @@ struct HomeView: View {
         .tint(.primaryText)
         .accessibilityAddTraits(.isSearchField)
     }
-}
-
-
-#Preview {
-    HomeView()
 }
 

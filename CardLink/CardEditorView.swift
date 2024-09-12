@@ -100,6 +100,3 @@ struct CardEditorView: View {
     }
 }
 
-//#Preview {
-//    CardEditorView()
-//}

@@ -124,7 +124,3 @@ struct TrashView: View {
     }
     
 }
-
-#Preview {
-    TrashView()
-}

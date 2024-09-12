@@ -1,5 +1,5 @@
 //
-//  CardViewer.swift
+//  CardDrawerViewer.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 04/09/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardViewer: View {
+struct CardDrawerViewer: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var context
     
@@ -108,8 +108,4 @@ struct CardViewer: View {
             .clipShape(Circle())
             .font(.appTitle1)
     }
-}
-
-#Preview {
-    CardViewer(card: .previewCard)
 }

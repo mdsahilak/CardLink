@@ -15,7 +15,7 @@ struct AppView: View {
                     Label("AI Scan", systemImage: "camera.aperture")
                 }
             
-            HomeView()
+            CardsListView()
                 .tabItem {
                     Label("Cards", systemImage: "square.stack")
                 }
@@ -26,8 +26,4 @@ struct AppView: View {
                 }
         }
     }
-}
-
-#Preview {
-    AppView()
 }

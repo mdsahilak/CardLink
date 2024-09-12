@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Scales the button on tap
 struct ScaledButtonStyle: ButtonStyle {
     let scaleFactor: CGFloat = 0.9
     

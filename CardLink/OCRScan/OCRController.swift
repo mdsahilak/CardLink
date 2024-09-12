@@ -1,5 +1,5 @@
 //
-//  DocumentCameraView.swift
+//  OCRController.swift
 //  CardLink
 //
 //  Created by Sahil Ak on 02/09/2024.
@@ -9,7 +9,8 @@ import SwiftUI
 import VisionKit
 import Vision
 
-struct DocumentCameraView: UIViewControllerRepresentable {
+// SwiftUI/UIKit bridge for the OCR Camera Scanner
+struct OCRController: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
     
@@ -21,18 +22,16 @@ struct DocumentCameraView: UIViewControllerRepresentable {
         return viewController
     }
 
-    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
-        
-    }
+    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {  }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
     
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
-        var parent: DocumentCameraView
+        var parent: OCRController
 
-        init(parent: DocumentCameraView) {
+        init(parent: OCRController) {
             self.parent = parent
         }
 
@@ -48,6 +47,7 @@ struct DocumentCameraView: UIViewControllerRepresentable {
                 
                 for observation in observations {
                     guard let bestCandidate = observation.topCandidates(1).first else { continue }
+                    
                     scannedTexts.append(bestCandidate.string)
                 }
                 

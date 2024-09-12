@@ -68,10 +68,10 @@ struct WirelessShareView: View {
                     }
                 }
                 .onAppear {
-                    vm.startBrowsing()
+                    vm.start()
                 }
                 .onDisappear {
-                    vm.finishBrowsing()
+                    vm.stop()
                 }
                 .alert(item: $vm.permissionRequest, content: { request in
                     Alert(
@@ -121,7 +121,7 @@ struct CardPickerView: View {
     
     var peer: MCPeerID
     
-    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], animation: .default)
+    @FetchRequest(entity: BusinessCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \BusinessCard.timestamp_, ascending: false)], predicate: NSPredicate(format: "isTrashed_ == %@", NSNumber(value: false)), animation: .default)
     private var fetchedCards: FetchedResults<BusinessCard>
     
     var body: some View {
@@ -147,6 +147,3 @@ struct CardPickerView: View {
     }
 }
 
-#Preview {
-    WirelessShareView()
-}

@@ -18,7 +18,7 @@ struct InteractivityViewModifier: ViewModifier {
     }
 }
 
-// Convenience
+// Convenience Helper
 extension View {
     func isInteractive(_ interactivity: Bool) -> some View {
         self.modifier(InteractivityViewModifier(isInteractive: interactivity))

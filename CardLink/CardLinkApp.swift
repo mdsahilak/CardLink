@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct CardLinkApp: App {
+    @Environment(\.scenePhase) private var phase
+    
     let persistenceController = PersistenceController.shared
     
     init() {
@@ -22,6 +24,11 @@ struct CardLinkApp: App {
             AppView()
                 .defaultAppStorage(.group ?? .standard)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onChange(of: phase, { oldPhase, newPhase in
+                    if newPhase == .background {
+                        persistenceController.saveContext()
+                    }
+                })
         }
     }
 }

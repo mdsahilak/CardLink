@@ -1,69 +1,20 @@
 //
-//  BusinessCard.swift
+//  BusinessCard+Helpers.swift
 //  CardLink
 //
-//  Created by Sahil Ak on 03/09/2024.
+//  Created by Sahil Ak on 12/09/2024.
 //
 
 import Foundation
-import CoreData
 
+// Helpers for editing & saving functionality
 extension BusinessCard {
-    var timestamp: Date {
-        get { timestamp_ ?? Date() }
-        set { timestamp_ = newValue }
-    }
     
-    // Properties Helpers
-    var organisation: String {
-        get { organisation_ ?? "" }
-        set { organisation_ = newValue }
-    }
-    
-    var name: String {
-        get { name_ ?? "" }
-        set { name_ = newValue }
-    }
-    
-    var role: String {
-        get { role_ ?? "" }
-        set { role_ = newValue }
-    }
-    
-    var email: String {
-        get { email_ ?? "" }
-        set { email_ = newValue }
-    }
-    
-    var telePhone: String {
-        get { telePhone_ ?? "" }
-        set { telePhone_ = newValue }
-    }
-    
-    var mobilePhone: String {
-        get { mobilePhone_ ?? "" }
-        set { mobilePhone_ = newValue }
-    }
-    
-    var website: String {
-        get { website_ ?? "" }
-        set { website_ = newValue }
-    }
-    
-    var address: String {
-        get { address_ ?? "" }
-        set { address_ = newValue }
-    }
-    
-    var isTrashed: Bool {
-        get { isTrashed_ }
-        set { isTrashed_ = newValue }
-    }
-    
-    // MARK: Edit & Save Functionality
+    /// Get the contents of the core data model as a draft for editing.
+    /// - Returns: A relevant details of the card as a Business Card Content
     func content() -> BusinessCardContent {
         BusinessCardContent(
-            name: name, 
+            name: name,
             role: role,
             organisation: organisation,
             email: email,
@@ -74,6 +25,9 @@ extension BusinessCard {
         )
     }
     
+    
+    /// Update the core data model class with the provided content information
+    /// - Parameter content: The content to be updated on the Business Card
     func update(with content: BusinessCardContent) {
         name = content.name
         role = content.role
@@ -89,18 +43,4 @@ extension BusinessCard {
         address = content.address
     }
     
-}
-
-//MARK: - Mock -
-extension BusinessCard {
-    /// Sample Card for use in SwiftUI Previews.
-    static let previewCard: BusinessCard = {
-        let card = BusinessCard(context: PersistenceController.preview.container.viewContext)
-        
-        card.organisation = "Apple, Inc"
-        card.name = "John Appleseed"
-        card.role = "Chief Demo Officer"
-        
-        return card
-    }()
 }

@@ -109,7 +109,7 @@ struct TrashView: View {
     }
     
     private func clearAllTrashItems() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeWave")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BusinessCard")
         fetchRequest.predicate = NSPredicate(format: "isTrashed_ == %@", NSNumber(value: true))
         
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -123,8 +123,4 @@ struct TrashView: View {
 
     }
     
-}
-
-#Preview {
-    TrashView()
 }

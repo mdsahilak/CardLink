@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Common app group to be used between app targets
 extension UserDefaults {
     static let group = UserDefaults(suiteName: Constants.InfoPlist.groupIdentifier)
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Helpers to use custom Avenir-Next font throughout the app
 private extension Font {
     enum AvenirNext {
         static let demiBold: String = "AvenirNext-DemiBold"

@@ -10,12 +10,12 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
-            ScannerView()
+            ScannerView(vm: ScannerViewModel())
                 .tabItem {
                     Label("AI Scan", systemImage: "camera.aperture")
                 }
             
-            HomeView()
+            CardsListView()
                 .tabItem {
                     Label("Cards", systemImage: "square.stack")
                 }
@@ -26,8 +26,4 @@ struct AppView: View {
                 }
         }
     }
-}
-
-#Preview {
-    AppView()
 }
